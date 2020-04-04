@@ -1,0 +1,459 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+   
+    <style>
+        .modal-lg {
+    max-width: 80% !important;
+}
+    </style>
+</head>
+
+<body>
+    <div class="modal modal-lg col-lg-12" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Message</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" id="msgid" />
+                                    <label class="control-label col-lg-6">Message</label>
+                                    <input type="text" id="msg" class="form-control col-lg-6" />
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <input type="button" id="btnUpdate" class="btn btn-primary btn-fill " value="Update" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="EditModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Message</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="row">
+                                    <input type="hidden" id="msgid" />
+                                    <label class="control-label col-lg-1">Message</label>
+                                    <input type="text" id="msg" class="form-control col-lg-1" />
+
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="button" id="btnupdate" class="btn btn-primary" value="Update">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-horizontal">
+
+    </div>
+        <p>Upload Text File & nbsp;</p>
+        <input type="file" name="" id="text_file" accept=".txt">
+        <button type="button" onclick="UploadToDB()">Load File</button>
+        
+                                    
+   
+
+    
+
+
+    <br>
+    Upload BG Image&nbsp;
+    <input type="file" name="img_upload" id="img_upload" accept=".png,.jpg,.jpeg"><button onclick="readURL()" class="button">Load File</button>
+
+    <br>
+    Upload Cover Img&nbsp;
+    <input type="file" name="img_upload2" id="img_upload2" accept=".png,.jpg,.jpeg"><button onclick="readURL2()" class="button">Load File</button>
+
+    <div id="sheheryar" style="display:none;">
+
+    </div>
+
+    <div class="flipbook-viewport mt-5" style="float: left;">
+        <div class="container">
+            <div class="flipbook">
+                <div class="cover" style="background-image:url('~/whatsapp.png')">
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
+
+@section scripts{
+<script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/CommonFunctions.js"></script>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+
+<script type="text/javascript">
+
+    //$('body').on('click', '[data-editable]', function () {
+
+    //    var $el = $(this);
+
+    //    var $input = $('<input/>').val($el.text());
+    //    $el.replaceWith($input);
+
+    //    var save = function () {
+    //        var $p = $('<p data-editable />').text($input.val());
+    //        $input.replaceWith($p);
+    //    };
+
+    //    /**
+    //      We're defining the callback with `one`, because we know that
+    //      the element will be gone just after that, and we don't want 
+    //      any callbacks leftovers take memory. 
+    //      Next time `p` turns into `input` this single callback 
+    //      will be applied again.
+    //    */
+    //    $input.one('blur', save).focus();
+
+    //});
+        //$(document).click(function (event) {
+        //    console.log($(event.target).text());
+    //});
+    $('span').click(function () {
+        debugger;
+        alert(this.id);
+    })
+    //});
+    //$(document).on('click', '.conversation', function (e) {
+    //    var className = $(e.target).prop('class');
+    //    alert(className);
+    //})
+    
+    $(document).on('dblclick', 'span', function (event) {
+           debugger
+            $('#msgid').val(this.id);
+            $('#msg').val($(event.target).text());
+            $('#myModal').modal('show');
+            ///alert($(event.target).text());
+        });
+
+        $('#btnUpdate').click(function () {
+
+            var id = $('#msgid').val();
+            var message = $('#msg').val();
+
+            $.ajax({
+                url: '/Home/UpdateMsg',
+                type: 'get',
+                data: {'MessageID':id,'Message':message},
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#msgid').val('');
+                    $('#msg').val('');
+                    $('#myModal').modal('hide');
+                    $('#'+id).text(message);
+
+
+                }
+            })
+
+        })
+
+function readURL() {
+   var fileToLoad = document.getElementById("img_upload").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      $(".chat-container").css('background','url("'+e.target.result+'") no-repeat center');
+      $(".chat-container").css('background-size','cover');
+
+
+    }
+
+    reader.readAsDataURL(fileToLoad);
+
+}
+
+
+
+function readURL2() {
+   var fileToLoad = document.getElementById("img_upload2").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      $(".cover").css('background','url("'+e.target.result+'") no-repeat center');
+      $(".cover").css('background-size','cover');
+
+
+    }
+
+    reader.readAsDataURL(fileToLoad);
+
+}
+
+
+
+
+var splitted;
+var first_name;
+var second_name;
+
+//function loadFileAsText() {
+
+//  var fileToLoad = document.getElementById("text_file").files[0];
+
+//  var fileReader = new FileReader();
+//  fileReader.onload = function(fileLoadedEvent){
+//  //    var textFromFileLoaded = fileLoadedEvent.target.result;
+//  //    document.getElementById("sheheryar").innerHTML = textFromFileLoaded;
+
+//      //var array = new Array();
+//      //array = textFromFileLoaded;
+//      UploadToDB();
+
+//  };
+
+
+
+
+//  fileReader.readAsText(fileToLoad, "UTF-8");
+
+
+//setTimeout(function(){
+
+
+//splitted = $("#sheheryar").html().split("\n");
+//first_name = splitted[1].substring(splitted[1].indexOf('-')+2,splitted[1].indexOf(': '));
+//second_name = first_name;
+//var counter=2;
+//while(first_name==second_name){
+
+//second_name = splitted[counter].substring(splitted[counter].indexOf('-')+2,splitted[counter].indexOf(': '));
+//counter++;
+//}
+
+//$("#sheheryar").html('');
+//for (i in splitted) {
+//  //  debugger;
+//  //  $("#sheheryar").append('<p>'+splitted[i]+'</p>');
+//}
+//shery();
+//},1000);
+
+
+//}
+
+
+
+function UploadToDB()
+{
+
+    //debugger
+    var $file = document.getElementById('text_file'),
+    $formData = new FormData();
+
+    if ($file.files.length > 0) {
+        for (var i = 0; i < $file.files.length; i++) {
+            $formData.append('file-' + i, $file.files[i]);
+        }
+    }
+
+    $.ajax({
+        url: '/Home/UploadFile',
+        type: 'POST',
+        data: $formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function (data) {
+    
+            $("#sheheryar").html('');
+            var counter = 0;
+            $.each(data, function (key, value) {
+                var text = "";
+                if (value.SenderName == "") {
+                    splitted =value.MessageID+"$ "+ CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message+" \n";
+                }
+                else {
+                    if (counter == 0)
+                    {
+                        first_name = value.SenderName;
+                        counter++;
+                    }
+                    else if (counter == 1)
+                    {
+                        second_name = value.SenderName;
+                        counter++;
+                    }
+
+                    splitted = value.MessageID+"$ " +CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message+" \n";
+                }
+
+
+                $("#sheheryar").append('<p>' + splitted + '</p>');
+            })
+            splitted = $("#sheheryar").html().split("\n");
+            shery();
+        }
+    });
+}
+
+function getMessage(event) {
+    var message = event.target.textContent;
+    console.log(message);
+}
+function shery(){
+
+
+    //splitted.shift();
+var splitted_length=splitted.length;
+    var new_page=1;
+var page=1;
+var column=1;
+var flipbook_height=600;
+
+var child_heights=0;
+for(i in splitted){
+
+
+    var pages = '<div class="mypage_"' + page + '"><div class="whatsapp_main"> <div class="marvel-device nexus5"> <div class="screen"> <div class="screen-container"> <div class="chat"> <div class="chat-container row"> <div class="col-md-6"> <div class="conversation"> <div class="conversation-container myconvo' + page + '1"> </div></div></div><div class="col-md-6"> <div class="conversation"> <div class="conversation-container  myconvo' + page + '2"></div></div></div></div></div></div></div></div></div></div>';
+    var Time = splitted[i].substring(
+    splitted[i].lastIndexOf(",") + 1,
+    splitted[i].lastIndexOf("-"));
+    var ID = parseInt(splitted[i].substring(
+    splitted[i].lastIndexOf(">") + 1,
+    splitted[i].lastIndexOf("$")
+));
+    //var ID = splitted[i].substring(splitted[i].indexOf('$') - 2,splitted[i].indexOf('$ '))
+
+if(new_page==1){
+
+$(".flipbook").append(pages);
+new_page=0;
+}
+var msg = splitted[i].substring(splitted[i].indexOf(': ') + 2).toString();
+if (msg.includes('Messages to this chat and calls are now secured with end-to-end encryption') || msg.includes('<media omitted="">'))
+{
+    
+}
+else if (splitted[i].substring(splitted[i].indexOf('-') + 2, splitted[i].indexOf(': ')) == first_name) {
+
+    $(".myconvo" + page + column).eq(0).append('<div class="message sent" onclick="getMessage(event)"> <span class="name" >' + first_name + '</span><br><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata"><span class="time">' + Time + '</span></span> </div>');
+}
+else{
+    $(".myconvo" + page + column).eq(0).append('<div class="message received" onclick="getMessage(event)"> <span class="name2">' + second_name + '</span><br><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata"><span class="time">' + Time + '</span></span> </div>');
+}
+
+child_heights=$(".myconvo"+page+column).height();
+
+
+// 19 word 1 line main, 9.8 height le rhe hain
+// alert(child_heights);
+
+if(splitted_length-1==i){
+
+}
+else{
+var j= parseInt(i)+parseInt(1);
+var last_length=splitted[j].substring(splitted[j].indexOf(': ')+2);
+
+last_length = (last_length.length/19) + parseInt(10);
+
+}
+if(parseInt(child_heights)+parseInt(last_length) > 420){
+    if(column==1){
+        column=2;
+    }
+    else{
+        page++;
+        new_page=1;
+        column=1;
+    }
+    child_heights=0;
+}
+
+
+
+}
+
+loadApp();
+
+}
+
+ function loadApp() {
+            $('.flipbook').turn({
+                // Width
+
+                width: 922,
+
+                // Height
+
+                height: 600,
+
+                // Elevation
+
+                elevation: 50,
+
+                // Enable gradients
+
+                gradients: true,
+
+                // Auto center this flipbook
+
+                autoCenter: true
+
+            });
+
+        }
+        yepnope({
+            test: Modernizr.csstransforms,
+            yep: ['../../lib/turn.js'],
+            nope: ['../../lib/turn.html4.min.js'],
+            both: ['../../css/style.css'],
+        });
+
+
+
+
+</script>
+
+    }

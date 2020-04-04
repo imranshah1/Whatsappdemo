@@ -1,0 +1,84 @@
+﻿@media print {
+    .whatsapp_mains {
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .nexus55 {
+        height: 100%;
+    }
+
+    .screens {
+        text-align: left;
+        height: 100%;
+    }
+
+    .screen-containers {
+        height: 100%;
+    }
+
+    .conversations {
+        height: 100%;
+        position: relative;
+        z-index: 0;
+    }
+
+    .myconvoprint {
+        padding: 0 16px;
+        margin-bottom: 5px;
+    }
+
+    .sent {
+        background: #e1ffc7;
+        border-radius: 5px 0px 5px 5px;
+        float: right;
+        color: #000;
+        clear: both;
+        line-height: 30px;
+        font-size: 15px;
+        padding: 8px;
+        position: relative;
+        margin: 8px 0;
+        max-width: 40%;
+        word-wrap: break-word;
+        z-index: -1;
+    }
+
+    .names {
+        width: 100%;
+        color: purple;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 6px;
+        float: left;
+    }
+
+    .received {
+        background: #fff;
+        border-radius: 0px 5px 5px 5px;
+        color: #000;
+        clear: both;
+        line-height: 30px;
+        font-size: 15px;
+        padding: 8px;
+        position: relative;
+        margin: 8px 0;
+        max-width: 40%;
+        word-wrap: break-word;
+        z-index: -1;
+    }
+
+    .names2 {
+        width: 100%;
+        color: orange;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 6px;
+        float: left;
+    }
+
+    .pmetadata {
+        padding: 0 0 0 16px;
+    }
+}

@@ -1,0 +1,783 @@
+﻿
+@{
+    ViewBag.Title = "upload";
+}
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        @@media print {
+ .page-wrapper {
+  display: block;
+ }
+}
+        .background{
+            width:10%;
+            height:10%
+        }
+       .background:hover {
+    cursor: pointer;
+}
+       #content {
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+  width:50%;
+  height:50%
+}
+    div.transbox {
+  margin: 30px;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
+       </style>
+</head>
+<body style="height:100%">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#cover">Cover</a></li>
+            <li><a data-toggle="tab" href="#dedication">Dedication</a></li>
+            <li><a data-toggle="tab" href="#chat">Chat</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="cover" class="tab-pane fade in active">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="images">
+                                <img class="background" src="~/Images/imagess.jpg" onclick="ChangeBackground(this.src)"/>
+                                <img class="background" src="~/Images/blue-and-purple.jpg" onclick="ChangeBackground(this.src)" />
+                                <img class="background" src="~/Images/images(1).jpg" onclick="ChangeBackground(this.src)" />
+                                <img class="background" src="~/Images/images.jpg" onclick="ChangeBackground(this.src)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content" class="col-lg-12">
+                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-5 transbox">
+                                <input type="text" class="form-control col-lg-2" id="txtTitle" placeholder="Write a title" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-5 transbox">
+                                <input type="text"  class="form-control col-lg-2" id="txtsubTitle" placeholder="Write a subtitle" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="dedication" class="tab-pane fade">
+                <div class="container">
+                    <br />
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#frontPage">Front Page</a></li>
+                        <li><a data-toggle="tab" href="#backPage">Back Page</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <div id="frontPage" class="tab-pane fade in active">
+                            <br />
+                            @Html.TextArea("frontPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
+                            
+                        </div>
+
+                        <div id="backPage" class="tab-pane fade">
+                            <br />
+                            @Html.TextArea("backPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="chat" class="tab-pane fade">
+                <br />
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+
+                            <input type="text" id="hiddenField" class="datepicker" hidden />
+                            <input type="file" name="img_upload" id="img_upload" accept=".png,.jpg,.jpeg" style="display:none"> 
+                            <select id="BookId" class="col-lg-1 btn btn-default" onchange="getChatfromDropDown(this.value)">
+                                <option> Book</option>
+                                @foreach (var v in ViewBag.BookId)
+                                {
+                                    <option value="@v.Value">@v.Text</option>
+                                }
+                            </select>
+                                @*@Html.DropDownList("BookId", ViewBag.BookId as SelectList, "Please Select Book", new { @class = "form-control" })*@
+                            <input type="button" name="Background" id="btnPrint" value="Print" class="bar btn btn-default col-lg-2" onclick="myPrint('flip')"/>
+                            <input type="button" value="Participants" class="bar btn btn-default col-lg-2" />
+                            <select id="fontsense" class="bar btn btn-default col-lg-1">
+                                <option>Font</option>
+                                <!--default fonts-->
+                                <option value="Arial">Arial</option>
+                                <option value="Comic Sans MS">Comic Sans MS</option>
+                                <option value="Trebuchet MS">Trebuchet MS</option>
+                                <option value="Verdana">Verdana</option>
+                                </select>
+                                @*<input type="button" value="Font" class="btn btn-default col-lg-2" />*@
+                                <input type="button" value="Edit mode" class="bar btn btn-default col-lg-2" />
+                                <input type="button" value="Add media" class="bar btn btn-default col-lg-2" />
+</div>
+                    </div>
+                </div>
+               
+                <div class="modal modal-lg col-lg-12" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Message</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" id="msgid" />
+                                            <label class="control-label col-lg-6">Message</label>
+                                            <input type="text" id="msg" class="form-control col-lg-6" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <input type="button" id="btnUpdate" class="btn btn-primary btn-fill " value="Update" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <br />
+                                <p>Upload Text File</p>
+                                <input type="file" name="" id="text_file" accept=".txt">
+                                <br />
+                                <button type="button"  onclick="UploadToDB()" class="btn btn-default">Load File</button>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <br />
+                                    Upload BG Image&nbsp;
+                                    <input type="file" name="img_upload" id="img_upload"  accept=".png,.jpg,.jpeg">
+                                    <br />
+                                    <button onclick="readURL()" class="button btn btn-default">Load File</button>
+
+                                </div>
+                                </div>
+                    </div>
+                    <div id="sheheryar" style="display:none;">
+                    </div>
+
+                    <div class="flipbook-viewport mt-5" style="float: left;">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="flipbook" id="flip">
+                                        <div class="cover" style="background-image:url('~/whatsapp.png')">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+@section scripts{
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/CommonFunctions.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/CrudScript.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        const aTag = document.getElementById("background");
+        const fileInput = document.getElementById("img_upload");
+        aTag.addEventListener("click", () => fileInput.click());
+        $('.transbox').css('display', 'none');
+        $('.bar').attr('disabled', true);
+        $("#fontsense").change(function () {
+
+            $('.message').css("font-family", $(this).val());
+
+        });
+        $("#hiddenField").datepicker({
+            format: 'YYYY-MM-DD',
+            changeMonth: true,
+            changeYear: true,
+            stepMonths: true,
+            showOn: "button",
+            buttonText: "Interval",
+            onSelect: function (dateText) {
+                //alert("Selected date: " + dateText + "; input's current value: " + this.value);
+                getChatByDate(dateText);
+            }
+        });
+        $('.ui-datepicker-trigger').addClass('btn btn-default col-lg-2');
+        //$('button, input:button').addClass('btn btn-default col-lg-2');
+    })
+
+    $('.page-wrapper div .mypage_ page .whatsapp_main .marvel-device .screen .screen-container .chat .chat-container .col-md-6 .conversation .conversation-container .message span').click(function () {
+        var val = $(this).text()
+        alert(val);
+    })
+    function myPrint (printpage) {
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var newstr = document.all.item(printpage).innerHTML;
+        var oldstr = document.body.innerHTML;
+        debugger
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+
+    function printdiv() {
+        debugger
+        var myPrintContent = document.getElementById('flip').innerHTML;
+        var myPrintWindow = window.open('', '', 'left=300,top=100,width=400,height=400');
+        $(".flipbook div").css("display", "block");
+        myPrintWindow.document.write('</head>');
+        myPrintWindow.document.write('<body>');
+        myPrintWindow.document.write(myPrintContent);
+        myPrintWindow.document.write('</body></html>');
+
+
+        myPrintWindow.document.close();
+        myPrintWindow.focus();
+        myPrintWindow.print();
+        myPrintWindow.close();
+        return false;
+    }
+    function PrintMe(DivID) {
+        var disp_setting = "toolbar=yes,location=no,";
+        disp_setting += "directories=yes,menubar=yes,";
+        disp_setting += "scrollbars=yes,width=650, height=600, left=100, top=25";
+        var content_vlue = document.getElementById(DivID).innerHTML;
+        var docprint = window.open("", "", disp_setting);
+        docprint.document.open();
+        docprint.document.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"');
+        docprint.document.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+        docprint.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">');
+        docprint.document.write('<head><title>My Title</title>');
+        docprint.document.write('<style type="text/css">body{ margin:0px;');
+        docprint.document.write('font-family:verdana,Arial;color:#000;');
+        docprint.document.write('font-family:Verdana, Geneva, sans-serif; font-size:12px;}');
+        docprint.document.write('a{color:#000;text-decoration:none;} </style>');
+        docprint.document.write('</head><body onLoad="self.print()"><center>');
+        docprint.document.write(content_vlue);
+        docprint.document.write('</center></body></html>');
+        docprint.document.close();
+        docprint.focus();
+    }
+
+    //$("#btnPrint").click(function () {
+    //    var divContents = $("#flip").html();
+    //    var printWindow = window.open('', '', 'height=400,width=800');
+    //    printWindow.document.write('<html><head><title>WhatsApp Chat</title>');
+    //    printWindow.document.write('</head><body >');
+    //    printWindow.document.write(divContents);
+    //    printWindow.document.write('</body></html>');
+    //    printWindow.document.close();
+    //    printWindow.print();
+    //});
+
+    function createPDF() {
+        filename = sessionStorage.clickcount + " " + $('#mLoc').text() + " [" + $('#date').text() + "].xls";
+
+        sessionStorage.clickcount = "";
+        var sTable = document.getElementById('flip').innerHTML;
+
+        //var style = "<style>";
+        //style = style + "table {width: 100%;}";
+        //style = style + "tr:nth-of-type(odd) {border: 0.5px solid #efefef ;  background-color:#efefef;";
+        //style = style + "}";
+        //style = style + "</style>";
+
+        // CREATE A WINDOW OBJECT.
+        var win = window.open('', '', 'height=700,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>' + filename + '</title>');   // <title> FOR PDF HEADER.
+        win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+        win.print();
+        location.reload();
+        win.hide(); // PRINT THE CONTENTS.
+
+    }
+
+
+    function getChatfromDropDown(id)
+    {
+        $.ajax({
+            url: '/Home/LoadChatByBook?idd='+id+'',
+            type: 'post',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('.bar').attr('disabled', false);
+                $("#sheheryar").html('');
+                var counter = 0;
+                $.each(data, function (key, value) {
+                    var text = "";
+                    if (value.SenderName == "") {
+                        splitted = value.MessageID + "$ " + CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message + " \n";
+                    }
+                    else {
+                        if (counter == 0) {
+                            first_name = value.SenderName;
+                            counter++;
+                        }
+                        else if (counter == 1) {
+                            second_name = value.SenderName;
+                            counter++;
+                        }
+
+                        splitted = value.MessageID + "$ " + CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message + " \n";
+                    }
+
+
+                    $("#sheheryar").append('<p>' + splitted + '</p>');
+                })
+                splitted = $("#sheheryar").html().split("\n");
+                shery();
+            }
+
+        })
+        
+    }
+
+    //$('body').on('click', '[data-editable]', function () {
+
+    //    var $el = $(this);
+
+    //    var $input = $('<input/>').val($el.text());
+    //    $el.replaceWith($input);
+
+    //    var save = function () {
+    //        var $p = $('<p data-editable />').text($input.val());
+    //        $input.replaceWith($p);
+    //    };
+
+    //    /**
+    //      We're defining the callback with `one`, because we know that
+    //      the element will be gone just after that, and we don't want
+    //      any callbacks leftovers take memory.
+    //      Next time `p` turns into `input` this single callback
+    //      will be applied again.
+    //    */
+    //    $input.one('blur', save).focus();
+
+    //});
+        //$(document).click(function (event) {
+        //    console.log($(event.target).text());
+    //});
+    $('span').click(function () {
+        debugger;
+        alert(this.id);
+    })
+    //});
+    //$(document).on('click', '.conversation', function (e) {
+    //    var className = $(e.target).prop('class');
+    //    alert(className);
+    //})
+
+    $(document).on('dblclick', 'span', function (event) {
+           debugger
+            $('#msgid').val(this.id);
+            $('#msg').val($(event.target).text());
+            $('#myModal').modal('show');
+            ///alert($(event.target).text());
+        });
+
+        $('#btnUpdate').click(function () {
+
+            var id = $('#msgid').val();
+            var message = $('#msg').val();
+
+            $.ajax({
+                url: '/Home/UpdateMsg',
+                type: 'get',
+                data: {'MessageID':id,'Message':message},
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#msgid').val('');
+                    $('#msg').val('');
+                    $('#myModal').modal('hide');
+                    $('#'+id).text(message);
+
+
+                }
+            })
+
+        })
+
+function readURL() {
+   var fileToLoad = document.getElementById("img_upload").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      $(".chat-container").css('background','url("'+e.target.result+'") no-repeat center');
+      $(".chat-container").css('background-size','cover');
+
+
+    }
+
+    reader.readAsDataURL(fileToLoad);
+
+}
+
+
+
+function readURL2() {
+   var fileToLoad = document.getElementById("img_upload2").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      $(".cover").css('background','url("'+e.target.result+'") no-repeat center');
+      $(".cover").css('background-size','cover');
+
+
+    }
+
+    reader.readAsDataURL(fileToLoad);
+
+}
+
+
+function getChatByDate(Dates)
+{
+ //   var date = $('#date').val();
+    var Book = $('#book').val();
+    //CrudScript.makeAjaxRequest('POST', '/Home/LoadChatByDate/', { date: Dates, bookid: Book }, false).then(function (data) {
+    $.ajax({
+        url: '/Home/LoadChatByDate?date=' + Dates + '&bookid='+Book+'',
+        type: 'POST',
+        data:  { date: Dates, bookid: Book },
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $('.bar').attr('disabled', false);
+            $("#sheheryar").html('');
+            var counter = 0;
+            $.each(data, function (key, value) {
+                var text = "";
+                if (value.SenderName == "") {
+                    splitted =value.MessageID+"$ "+ CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message+" \n";
+                }
+                else {
+                    if (counter == 0)
+                    {
+                        first_name = value.SenderName;
+                        counter++;
+                    }
+                    else if (counter == 1)
+                    {
+                        second_name = value.SenderName;
+                        counter++;
+                    }
+
+                    splitted = value.MessageID+"$ " +CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message+" \n";
+                }
+
+
+                $("#sheheryar").append('<p>' + splitted + '</p>');
+            })
+            splitted = $("#sheheryar").html().split("\n");
+            shery();
+        }
+        
+    })
+    
+}
+
+var splitted;
+var first_name;
+var second_name;
+
+//function loadFileAsText() {
+
+//  var fileToLoad = document.getElementById("text_file").files[0];
+
+//  var fileReader = new FileReader();
+//  fileReader.onload = function(fileLoadedEvent){
+//  //    var textFromFileLoaded = fileLoadedEvent.target.result;
+//  //    document.getElementById("sheheryar").innerHTML = textFromFileLoaded;
+
+//      //var array = new Array();
+//      //array = textFromFileLoaded;
+//      UploadToDB();
+
+//  };
+
+
+
+
+//  fileReader.readAsText(fileToLoad, "UTF-8");
+
+
+//setTimeout(function(){
+
+
+//splitted = $("#sheheryar").html().split("\n");
+//first_name = splitted[1].substring(splitted[1].indexOf('-')+2,splitted[1].indexOf(': '));
+//second_name = first_name;
+//var counter=2;
+//while(first_name==second_name){
+
+//second_name = splitted[counter].substring(splitted[counter].indexOf('-')+2,splitted[counter].indexOf(': '));
+//counter++;
+//}
+
+//$("#sheheryar").html('');
+//for (i in splitted) {
+//  //  debugger;
+//  //  $("#sheheryar").append('<p>'+splitted[i]+'</p>');
+//}
+//shery();
+//},1000);
+
+
+//}
+
+
+
+function UploadToDB()
+{
+
+    //debugger
+    var $file = document.getElementById('text_file'),
+    $formData = new FormData();
+
+    if ($file.files.length > 0) {
+        for (var i = 0; i < $file.files.length; i++) {
+            $formData.append('file-' + i, $file.files[i]);
+        }
+    }
+
+    $.ajax({
+        url: '/Home/UploadFile',
+        type: 'POST',
+        data: $formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function (data) {
+
+            $("#sheheryar").html('');
+            var counter = 0;
+            $.each(data, function (key, value) {
+                var text = "";
+                if (value.SenderName == "") {
+                    splitted =value.MessageID+"$ "+ CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message+" \n";
+                }
+                else {
+                    if (counter == 0)
+                    {
+                        first_name = value.SenderName;
+                        counter++;
+                    }
+                    else if (counter == 1)
+                    {
+                        second_name = value.SenderName;
+                        counter++;
+                    }
+
+                    splitted = value.MessageID+"$ " +CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message+" \n";
+                }
+
+
+                $("#sheheryar").append('<p>' + splitted + '</p>');
+            })
+            splitted = $("#sheheryar").html().split("\n");
+            shery();
+        }
+    });
+}
+
+function getMessage(event) {
+    var message = event.target.textContent;
+    console.log(message);
+}
+function shery(){
+
+
+    //splitted.shift();
+var splitted_length=splitted.length;
+    var new_page=1;
+var page=1;
+var column=1;
+var flipbook_height=600;
+
+var child_heights=0;
+for(i in splitted){
+
+
+    var pages = '<div class="mypage_"' + page + '"><div class="whatsapp_main"> <div class="marvel-device nexus5"> <div class="screen"> <div class="screen-container"> <div class="chat"> <div class="chat-container row"> <div class="col-md-6"> <div class="conversation"> <div class="conversation-container myconvo' + page + '1"> </div></div></div><div class="col-md-6"> <div class="conversation"> <div class="conversation-container  myconvo' + page + '2"></div></div></div></div></div></div></div></div></div></div>';
+    var Time = splitted[i].substring(
+    splitted[i].lastIndexOf(",") + 1,
+    splitted[i].lastIndexOf("-"));
+    var ID = parseInt(splitted[i].substring(
+    splitted[i].lastIndexOf(">") + 1,
+    splitted[i].lastIndexOf("$")
+));
+    //var ID = splitted[i].substring(splitted[i].indexOf('$') - 2,splitted[i].indexOf('$ '))
+
+if(new_page==1){
+
+$(".flipbook").append(pages);
+new_page=0;
+}
+var msg = splitted[i].substring(splitted[i].indexOf(': ') + 2).toString();
+if (msg.includes('Messages to this chat and calls are now secured with end-to-end encryption') || msg.includes('<media omitted="">') || msg.includes('/p>')){}
+else if (splitted[i].substring(splitted[i].indexOf('-') + 2, splitted[i].indexOf(': ')) == first_name) {
+
+    $(".myconvo" + page + column).eq(0).append('<div class="message sent" onclick="getMessage(event)"> <span class="name" >' + first_name + '</span><br><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata"><span class="time">' + Time + '</span></span> </div>');
+}
+else{
+    $(".myconvo" + page + column).eq(0).append('<div class="message received" onclick="getMessage(event)"> <span class="name2">' + second_name + '</span><br><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata"><span class="time">' + Time + '</span></span> </div>');
+}
+
+child_heights=$(".myconvo"+page+column).height();
+
+
+// 19 word 1 line main, 9.8 height le rhe hain
+// alert(child_heights);
+
+if(splitted_length-1==i){
+
+}
+else{
+var j= parseInt(i)+parseInt(1);
+var last_length=splitted[j].substring(splitted[j].indexOf(': ')+2);
+
+last_length = (last_length.length/19) + parseInt(10);
+
+}
+if(parseInt(child_heights)+parseInt(last_length) > 420){
+    if(column==1){
+        column=2;
+    }
+    else{
+        page++;
+        new_page=1;
+        column=1;
+    }
+    child_heights=0;
+}
+
+
+
+}
+
+loadApp();
+
+}
+
+ function loadApp() {
+            $('.flipbook').turn({
+                // Width
+
+                width: 922,
+
+                // Height
+
+                height: 600,
+
+                // Elevation
+
+                elevation: 50,
+
+                // Enable gradients
+
+                gradients: true,
+
+                // Auto center this flipbook
+
+                autoCenter: true
+
+            });
+
+        }
+        yepnope({
+            test: Modernizr.csstransforms,
+            yep: ['../../lib/turn.js'],
+            nope: ['../../lib/turn.html4.min.js'],
+            both: ['../../css/style.css'],
+        });
+
+
+
+
+        function ChangeBackground(src) {
+            var title = $('#txtTitle').val();
+            var subtitle = $('#txtsubTitle').val();
+        $('#content').css('background-image', 'url(' + src + ')');
+        $('.transbox').css('display', 'block');
+        $(".cover").css('background', 'url("' + src + '") no-repeat center');
+        $(".cover").css('background-size', 'cover');
+
+    }
+</script>
+
+}

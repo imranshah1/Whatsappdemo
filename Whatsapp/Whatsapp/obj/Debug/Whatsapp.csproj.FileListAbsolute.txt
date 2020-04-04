@@ -1,0 +1,170 @@
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\ApplicationInsights.config
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\csc.exe
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\System.Collections.Immutable.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\vbc.exe
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\VBCSCompiler.exe
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\roslyn\VBCSCompiler.exe.config
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Whatsapp.dll.config
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Whatsapp.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Whatsapp.pdb
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Antlr3.Runtime.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\EntityFramework.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\EntityFramework.SqlServer.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.Web.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.WindowsServer.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.ApplicationInsights.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Google.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Web.Infrastructure.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Newtonsoft.Json.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Owin.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Helpers.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Mvc.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Optimization.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Razor.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Deployment.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Razor.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\WebGrease.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.Web.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.WindowsServer.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.ApplicationInsights.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Helpers.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Mvc.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Optimization.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.Razor.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Deployment.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Razor.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Antlr3.Runtime.pdb
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Newtonsoft.Json.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\EntityFramework.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\EntityFramework.SqlServer.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Google.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\obj\Debug\Whatsapp.csprojResolveAssemblyReference.cache
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\obj\Debug\Whatsapp.dll
+c:\users\imran shah\documents\visual studio 2015\Projects\Whatsapp\Whatsapp\obj\Debug\Whatsapp.pdb
+C:\Users\Imran Shah\Documents\Visual Studio 2015\Projects\Whatsapp\Whatsapp\bin\itextsharp.dll
+C:\Users\Imran Shah\Documents\Visual Studio 2015\Projects\Whatsapp\Whatsapp\bin\itextsharp.xmlworker.dll
+C:\Users\Imran Shah\Documents\Visual Studio 2015\Projects\Whatsapp\Whatsapp\bin\itextsharp.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\ApplicationInsights.config
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\csc.exe
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\System.Collections.Immutable.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\System.Reflection.Metadata.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\vbc.exe
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\VBCSCompiler.exe
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\roslyn\VBCSCompiler.exe.config
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Whatsapp.dll.config
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Whatsapp.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Whatsapp.pdb
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Antlr3.Runtime.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\EntityFramework.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\EntityFramework.SqlServer.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\itextsharp.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\itextsharp.xmlworker.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.DependencyCollector.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.Web.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.WindowsServer.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.ApplicationInsights.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Google.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Newtonsoft.Json.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Owin.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Helpers.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Mvc.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Optimization.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Razor.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Deployment.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Razor.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\WebGrease.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\itextsharp.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.DependencyCollector.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.Web.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AI.WindowsServer.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.ApplicationInsights.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Helpers.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Mvc.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Optimization.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.Razor.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Deployment.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\System.Web.WebPages.Razor.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Antlr3.Runtime.pdb
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Newtonsoft.Json.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\EntityFramework.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\EntityFramework.SqlServer.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Google.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\obj\Debug\Whatsapp.csprojResolveAssemblyReference.cache
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\obj\Debug\Whatsapp.dll
+D:\Projects\Imran\Projects\Whatsapp\Whatsapp\obj\Debug\Whatsapp.pdb

@@ -1,0 +1,861 @@
+﻿
+@{
+    ViewBag.Title = "upload";
+}
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    @*<link href="~/css/print.css" rel="stylesheet" />*@
+
+    <style>
+            @@media print{
+                .pageBreak {
+                    page-break-before: always;
+                }
+                .chat-container {
+                    height: 980px;
+                    background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat;
+                    background-size: cover;
+                }
+            }
+        .upper-center-tabs {
+            list-style: none;
+            transform: translate(13%, 0);
+        }
+       
+        .background{
+            width:10%;
+            height:10%
+        }
+       .background:hover {
+    cursor: pointer;
+}
+       #content {
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+  width:50%;
+  height:50%
+}
+    div.transbox {
+  margin: 30px;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
+       </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#cover" class="ui-icon-bookmark">Cover</a></li>
+                <li><a data-toggle="tab" href="#dedication" class="ui-icon-c">Dedication</a></li>
+                <li><a data-toggle="tab" href="#chat">Chat</a></li>
+            </ul>
+
+        </div>
+        <div class="tab-content" >
+            <div id="cover" class="tab-pane fade in active">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="images">
+                                <img class="background" src="~/Images/pink-background.jpg" onclick="setCover(this.src)"/>
+                                <img class="background" src="~/Images/imagess.jpg" onclick="ChangeBackground(this.src)"/>
+                                <img class="background" src="~/Images/blue-and-purple.jpg" onclick="ChangeBackground(this.src)" />
+                                <img class="background" src="~/Images/images(1).jpg" onclick="ChangeBackground(this.src)" />
+                                <img class="background" src="~/Images/images.jpg" onclick="ChangeBackground(this.src)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content" class="col-lg-12">
+                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-5 transbox">
+                                <input type="text" class="form-control col-lg-2" id="txtTitle" placeholder="Write a title" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-5 transbox">
+                                <input type="text"  class="form-control col-lg-2" id="txtsubTitle" placeholder="Write a subtitle" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="dedication" class="tab-pane fade">
+                <div class="container">
+                    <br />
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#frontPage">Front Page</a></li>
+                        <li><a data-toggle="tab" href="#backPage">Back Page</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div id="frontPage" class="tab-pane fade in active">
+                                    <br />
+                                    @Html.TextArea("frontPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class=".dedication" style="display:block">
+                                    <p id="frontdedicationText"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="backPage" class="tab-pane fade">
+                            <br />
+                            
+                            <div class="row">
+                                <div class="col-lg-6">
+                                   @Html.TextArea("backPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class=".dedication" style="display:block">
+                                        <p id="backdedicationText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="chat" class="tab-pane fade" style="background-image: url('../../Images/whatsapp.jpg');">
+                <br />
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+
+                            <ul class="upper-center-tabs">
+                                <li>
+                                    <input type="text" id="hiddenField" class="datepicker" hidden />
+                                </li>
+                                <li><select id="BookId" class="col-lg-1 btn btn-default" onchange="getChatfromDropDown(this.value)">
+    <option> Book</option>
+    @foreach (var v in ViewBag.BookId)
+    {
+        <option value="@v.Value">@v.Text</option>
+    }
+</select>
+                                </li>
+                                <li>
+
+                                    <input type="button" name="Background" id="btnPrint" value="Print" class="bar btn btn-default col-lg-2" onclick="printData('#toprint')" />
+
+                                </li>
+                                <li>
+                                    <input type="button" name="Background" id="btnPrint" value="Printme" class="bar btn btn-default col-lg-2" onclick="PrintMe('toprint')" />
+                                    
+                                </li>
+                                <li>
+                                    <input type="button" value="Participants" class="bar btn btn-default col-lg-2" />
+                                </li>
+                                <li>
+                                    <select id="fontsense" class="bar btn btn-default col-lg-1">
+                                        <option>Font</option>
+                                        <!--default fonts-->
+                                        <option value="Arial">Arial</option>
+                                        <option value="Comic Sans MS">Comic Sans MS</option>
+                                        <option value="Trebuchet MS">Trebuchet MS</option>
+                                        <option value="Verdana">Verdana</option>
+                                    </select>
+
+                                </li>
+                                <li>
+                                    <input type="button" value="Edit mode" class="bar btn btn-default col-lg-2" />
+                                </li>
+                                <li>
+                                    <input type="button" value="Add media" class="bar btn btn-default col-lg-2" />
+                                </li>
+                            </ul>
+
+                            <input type="file" name="img_upload" id="img_upload" accept=".png,.jpg,.jpeg" style="display:none"> 
+                            
+                                @*@Html.DropDownList("BookId", ViewBag.BookId as SelectList, "Please Select Book", new { @class = "form-control" })*@
+                            
+                                @*<input type="button" value="Font" class="btn btn-default col-lg-2" />*@
+
+
+</div>
+                    </div>
+                </div>
+               
+                <div class="modal modal-lg col-lg-12" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Message</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" id="msgid" />
+                                            <label class="control-label col-lg-6">Message</label>
+                                            <input type="text" id="msg" class="form-control col-lg-6" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <input type="button" id="btnUpdate" class="btn btn-primary btn-fill " value="Update" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <br />
+                                <p>Upload Text File</p>
+                                <input type="file" name="" id="text_file" accept=".txt">
+                                <br />
+                                <button type="button"  onclick="UploadToDB()" class="btn btn-default">Load File</button>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <br />
+                                    Upload BG Image&nbsp;
+                                    <input type="file" name="img_upload" id="img_upload"  accept=".png,.jpg,.jpeg">
+                                    <br />
+                                    <button onclick="readURL()" class="button btn btn-default">Load File</button>
+
+                                </div>
+                                </div>
+                    </div>
+                    <div id="sheheryar" style="display:none;">
+                    </div>
+                    <div class="toPrint" id="toprint" style="overflow-y:scroll; display:block"></div>
+                    <div class="flipbook-viewport mt-5" style="float: left;">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="flipbook" id="flip">
+                                        <div class="cover">
+                                            <h4 id="booktitle" style="font-size: 18px;text-align: center;vertical-align: middle;line-height: 90px;margin-top: 60px"></h4>
+                                            <p id="booksubtitle" style="margin: 0 0 10px;font-size: 18px;text-align: center;vertical-align: middle; line-height: 0px;margin-top: 30px"></p>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
+        </div>
+    
+
+</body>
+
+@section scripts{
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/CommonFunctions.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/CrudScript.js"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script type="text/javascript">
+
+
+    function printData(elem) {
+        Popup(jQuery(elem).html());
+    }
+
+    function Popup(data) {
+        var mywindow = window.open('', 'my div', 'height=400,width=600');
+        mywindow.document.write('<html><head><title></title>');
+        //mywindow.document.write('<link rel="stylesheet" href="http://localhost:51010/css/print.css" type="text/css" />');
+        //mywindow.document.write('<style type="text/css"> .chat-container{height:100px; background:#efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) !important repeat;background-size:cover;} .whatsapp_mains { background-size: cover; width: 100%; height: 100%; } .nexus55 { height: 100%; } .screens { text-align: left; height: 100%; } .screen-containers { height: 100%; } .conversations { height: 100%; position: relative; z-index: 0; } .myconvoprint { padding: 0 16px; margin-bottom: 5px; } .sent { background: #e1ffc7; border-radius: 5px 0px 5px 5px; float: right; color: #000; clear: both; line-height: 30px; font-size: 15px; padding: 8px; position: relative; margin: 8px 0; max-width: 40%; word-wrap: break-word; z-index: -1; } .names { width: 100%; color: purple; font-size: 12px; font-weight: bold; margin-bottom: 6px; float: left; } .received { background: #fff; border-radius: 0px 5px 5px 5px; color: #000; clear: both; line-height: 30px; font-size: 15px; padding: 8px; position: relative; margin: 8px 0; max-width: 40%; word-wrap: break-word; z-index: -1; } .names2 { width: 100%; color: orange; font-size: 12px; font-weight: bold; margin-bottom: 6px; float: left; } .pmetadata { padding: 0 0 0 16px; }  </style></head><body>');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+        mywindow.document.close();
+        mywindow.print();
+    }
+
+    $(document).ready(function () {
+
+        
+
+        const aTag = document.getElementById("background");
+        const fileInput = document.getElementById("img_upload");
+        aTag.addEventListener("click", () => fileInput.click());
+        $('.transbox').css('display', 'none');
+        $('.bar').attr('disabled', true);
+        $("#fontsense").change(function () {
+
+            $('.message').css("font-family", $(this).val());
+
+        });
+        $("#hiddenField").datepicker({
+            format: 'YYYY-MM-DD',
+            changeMonth: true,
+            changeYear: true,
+            stepMonths: true,
+            showOn: "button",
+            buttonText: "Interval",
+            onSelect: function (dateText) {
+                //alert("Selected date: " + dateText + "; input's current value: " + this.value);
+                getChatByDate(dateText);
+            }
+        });
+        $('.ui-datepicker-trigger').addClass('btn btn-default col-lg-2');
+        //$('button, input:button').addClass('btn btn-default col-lg-2');
+    })
+
+    $("#frontPage").keyup(function () {
+        debugger
+        var text = $('textarea#frontPage').val();
+        $("#frontdedicationText").text(text);
+    });
+
+    $("#backPage").keyup(function () {
+        debugger
+        var text = $('textarea#backPage').val();
+        $("#backdedicationText").text(text);
+    });
+    
+    function myPrint (printpage) {
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var newstr = document.all.item(printpage).innerHTML;
+        var oldstr = document.body.innerHTML;
+        debugger
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+    function PrintMe(DivID) {
+        var disp_setting = "toolbar=yes,location=no,";
+        disp_setting += "directories=yes,menubar=yes,";
+        disp_setting += "scrollbars=yes,width=100, height=100, left=100, top=25";
+        var content_vlue = document.getElementById(DivID).innerHTML;
+        var docprint = window.open("", "", disp_setting);
+        docprint.document.open();
+        docprint.document.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"');
+        docprint.document.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+        docprint.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">');
+        docprint.document.write('<head><title>My Title</title>');
+        docprint.document.write('<style type="text/css">body{ margin:0px;');
+        docprint.document.write('font-family:verdana,Arial;color:#000;');
+        docprint.document.write('font-family:Verdana, Geneva, sans-serif; font-size:12px;}');
+        docprint.document.write('.flipbook-viewport{	overflow:visible;	width:100%;	height:100%;}.flipbook-viewport .container{	position:absolute;	top:50%;	left:50%;	margin:auto;}.flipbook-viewport .flipbook{	width:922px;	height:600px;	left:-461px;	top:-50px;}.flipbook-viewport .page{	width:461px;	height:600px;	background-color:white;	background-repeat:no-repeat;	background-size:100% 100%;}.flipbook .page{	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);	-moz-box-shadow:0 0 20px rgba(0,0,0,0.2);	-ms-box-shadow:0 0 20px rgba(0,0,0,0.2);	-o-box-shadow:0 0 20px rgba(0,0,0,0.2);	box-shadow:0 0 20px rgba(0,0,0,0.2);}.flipbook-viewport .page img{	-webkit-touch-callout: none;	-webkit-user-select: none;	-khtml-user-select: none;	-moz-user-select: none;	-ms-user-select: none;	user-select: none;	margin:0;}.flipbook-viewport .shadow{	-webkit-transition: -webkit-box-shadow 0.5s;	-moz-transition: -moz-box-shadow 0.5s;	-o-transition: -webkit-box-shadow 0.5s;	-ms-transition: -ms-box-shadow 0.5s;	-webkit-box-shadow:0 0 20px #ccc;	-moz-box-shadow:0 0 20px #ccc;	-o-box-shadow:0 0 20px #ccc;	-ms-box-shadow:0 0 20px #ccc;	box-shadow:0 0 20px #ccc;}.whatsapp_main{	background-size: cover;	width: 100%;	height: 100%;}.marvel-device{	height: 100%;}.marvel-device .screen {  text-align: left;  height: 100%;}.screen-container {  height: 100%;}/* Status Bar */.status-bar {  height: 25px;  background: #004e45;  color: #fff;  font-size: 14px;  padding: 0 8px;}.status-bar:after {  content: "";  display: table;  clear: both;}.status-bar div {  float: right;  position: relative;  top: 50%;  transform: translateY(-50%);  margin: 0 0 0 8px;  font-weight: 600;}/* Chat */.chat {  height: 100%;}.chat-container {  height: 100%;  background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat;  background-size: cover;}/* User Bar */.user-bar {  height: 55px;  background: #005e54;  color: #fff;  padding: 0 8px;  font-size: 24px;  position: relative;  z-index: 1;}.user-bar:after {  content: "";  display: table;  clear: both;}.user-bar div {  float: left;  transform: translateY(-50%);  position: relative;  top: 50%;}.user-bar .actions {  float: right;  margin: 0 0 0 20px;}.user-bar .actions.more {  margin: 0 12px 0 32px;}.user-bar .actions.attachment {  margin: 0 0 0 30px;}.user-bar .actions.attachment i {  display: block;  transform: rotate(-45deg);}.user-bar .avatar {  margin: 0 0 0 5px;  width: 36px;  height: 36px;}.user-bar .avatar img {  border-radius: 50%;  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);  display: block;  width: 100%;}.user-bar .name {  font-size: 17px;  font-weight: 600;  text-overflow: ellipsis;  letter-spacing: 0.3px;  margin: 0 0 0 8px;  overflow: visible;  white-space: nowrap;  width: 110px;}.user-bar .status {  display: block;  font-size: 13px;  font-weight: 400;  letter-spacing: 0;}/* Conversation */.conversation {  height: 100%;  position: relative;  z-index: 0;}.conversation ::-webkit-scrollbar {  transition: all .5s;  width: 5px;  height: 1px;  z-index: 10;}.conversation ::-webkit-scrollbar-track {  background: transparent;}.conversation ::-webkit-scrollbar-thumb {  background: #b3ada7;}.conversation .conversation-container {   overflow-x: visible;  padding: 0 16px;  margin-bottom: 5px;}.conversation .conversation-container:after {  content: "";  display: table;  clear: both;}/* Messages */.message {  color: #000;  clear: both;  line-height: 18px;  font-size: 15px;  padding: 8px;  position: relative;  margin: 8px 0;  max-width: 85%;  word-wrap: break-word;  z-index: -1;}.message:after {  position: absolute;  content: "";  width: 0;  height: 0;  border-style: solid;}.metadata {  display: inline-block;  float: right;  padding: 0 0 0 7px;  position: relative;  bottom: -4px;}.metadata .time {  color: rgba(0, 0, 0, .45);  font-size: 11px;  display: inline-block;}.metadata .tick {  display: inline-block;  margin-left: 2px;  position: relative;  top: 4px;  height: 16px;  width: 16px;}.metadata .tick svg {  position: absolute;  transition: .5s ease-in-out;}.metadata .tick svg:first-child {  -webkit-backface-visibility: visible;          backface-visibility: visible;  -webkit-transform: perspective(800px) rotateY(180deg);          transform: perspective(800px) rotateY(180deg);}.metadata .tick svg:last-child {  -webkit-backface-visibility: visible;          backface-visibility: visible;  -webkit-transform: perspective(800px) rotateY(0deg);          transform: perspective(800px) rotateY(0deg);}.metadata .tick-animation svg:first-child {  -webkit-transform: perspective(800px) rotateY(0);          transform: perspective(800px) rotateY(0);}.metadata .tick-animation svg:last-child {  -webkit-transform: perspective(800px) rotateY(-179.9deg);          transform: perspective(800px) rotateY(-179.9deg);}.message:first-child {  margin: 16px 0 8px;}.message.received {  background: #fff;  border-radius: 0px 5px 5px 5px;  float: left;}.message.received .metadata {  padding: 0 0 0 16px;}.message.received:after {  border-width: 0px 10px 10px 0;  border-color: transparent #fff transparent transparent;  top: 0;  left: -10px;}.message.sent {  background: #e1ffc7;  border-radius: 5px 0px 5px 5px;  float: right;}.message.sent:after {  border-width: 0px 0 10px 10px;  border-color: transparent transparent transparent #e1ffc7;  top: 0;  right: -10px;}/* Compose */.conversation-compose {  display: flex;  flex-direction: row;  align-items: flex-end;  overflow: visible;  height: 50px;  width: 100%;  z-index: 2;}.conversation-compose div,.conversation-compose input {  background: #fff;  height: 100%;}.conversation-compose .emoji {  display: flex;  align-items: center;  justify-content: center;  background: white;  border-radius: 5px 0 0 5px;  flex: 0 0 auto;  margin-left: 8px;  width: 48px;}.conversation-compose .input-msg {  border: 0;  flex: 1 1 auto;  font-size: 16px;  margin: 0;  outline: none;  min-width: 50px;}.conversation-compose .photo {  flex: 0 0 auto;  border-radius: 0 0 5px 0;  text-align: center;  position: relative;  width: 48px;}.conversation-compose .photo:after {  border-width: 0px 0 10px 10px;  border-color: transparent transparent transparent #fff;  border-style: solid;  position: absolute;  width: 0;  height: 0;  content: "";  top: 0;  right: -10px;}.conversation-compose .photo i {  display: block;  color: #7d8488;  font-size: 24px;  transform: translate(-50%, -50%);  position: relative;  top: 50%;  left: 50%;}.conversation-compose .send {  background: transparent;  border: 0;  cursor: pointer;  flex: 0 0 auto;  margin-left: 8px;  margin-right: 8px;  padding: 0;  position: relative;  outline: none;}.conversation-compose .send .circle {  background: #008a7c;  border-radius: 50%;  color: #fff;  position: relative;  width: 48px;  height: 48px;  display: flex;  align-items: center;  justify-content: center;}.conversation-compose .send .circle i {  font-size: 24px;  margin-left: 5px;}/* Small Screens */@@media (max-width: 768px) {  .marvel-device.nexus5 {    border-radius: 0;    flex: none;    padding: 0;    max-width: none;    overflow: visible;    height: 100%;    width: 100%;  }  .marvel-device > .screen .chat {    visibility: visible;  }  .marvel-device {    visibility: visible;  }  .marvel-device .status-bar {    display: block;  }  .screen-container {    position: absolute;    top: 0;    left: 0;    right: 0;    bottom: 0;  }  .conversation {    height: calc(100vh - 55px);  }  .conversation .conversation-container {    height: calc(100vh - 120px);  }}.name{	width: 100%;	color: purple;	font-size: 12px;	font-weight: bold;	margin-bottom: 6px;	float: left;}.name2{	width: 100%;	color: orange;	font-size: 12px;	font-weight: bold;	margin-bottom: 6px;	float: left;}.page-wrapper:nth-child(even){  box-shadow: 10px 10px 10px gray;    border-left:5px solid gray;}.page-wrapper:nth-child(odd){  box-shadow: 10px 10px 10px gray;    border-right: 5px solid gray;} </style>');
+        docprint.document.write('</head><body onLoad="self.print()"><center>');
+        docprint.document.write(content_vlue);
+        docprint.document.write('</center></body></html>');
+        docprint.document.close();
+        docprint.focus();
+    }
+
+    function printdiv() {
+        debugger
+        var myPrintContent = document.getElementById('flip').innerHTML;
+        var myPrintWindow = window.open('', '', 'left=300,top=100,width=400,height=400');
+        $(".flipbook div").css("display", "block");
+        myPrintWindow.document.write('</head>');
+        myPrintWindow.document.write('<body>');
+        myPrintWindow.document.write(myPrintContent);
+        myPrintWindow.document.write('</body></html>');
+
+
+        myPrintWindow.document.close();
+        myPrintWindow.focus();
+        myPrintWindow.print();
+        myPrintWindow.close();
+        return false;
+    }
+
+    
+    function print() {
+
+            var divToPrint = document.getElementById("toprint");
+            newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+            newWin.focus();
+
+
+
+
+    }
+       
+    function createPDF() {
+        filename = sessionStorage.clickcount + " " + $('#mLoc').text() + " [" + $('#date').text() + "].xls";
+
+        sessionStorage.clickcount = "";
+        var sTable = document.getElementById('flip').innerHTML;
+
+        //var style = "<style>";
+        //style = style + "table {width: 100%;}";
+        //style = style + "tr:nth-of-type(odd) {border: 0.5px solid #efefef ;  background-color:#efefef;";
+        //style = style + "}";
+        //style = style + "</style>";
+
+        // CREATE A WINDOW OBJECT.
+        var win = window.open('', '', 'height=700,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>' + filename + '</title>');   // <title> FOR PDF HEADER.
+        win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+        win.print();
+        location.reload();
+        win.hide(); // PRINT THE CONTENTS.
+
+    }
+
+
+    function getChatfromDropDown(id)
+    {
+        $.ajax({
+            url: '/Home/LoadChatByBook?idd='+id+'',
+            type: 'post',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+                $('.bar').attr('disabled', false);
+                $("#sheheryar").html('');
+                var counter = 0;
+                $.each(data, function (key, value) {
+
+                    var text = "";
+                    if (value.SenderName == "") {
+                        splitted = value.MessageID + "$ " + CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message + " \n";
+                    }
+                    else {
+                        if (counter == 0) {
+                            first_name = value.SenderName;
+                            counter++;
+                        }
+                        else if (counter == 1) {
+                            second_name = value.SenderName;
+                            counter++;
+                        }
+
+                        splitted = value.MessageID + "$ " + CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message + " \n";
+                    }
+
+
+                    $("#sheheryar").append('<p>' + splitted + '</p>');
+                })
+                splitted = $("#sheheryar").html().split("\n");
+                shery();
+            }
+
+        })
+
+    }
+
+
+    $(document).on('dblclick', 'span', function (event) {
+           debugger
+            $('#msgid').val(this.id);
+            $('#msg').val($(event.target).text());
+            $('#myModal').modal('show');
+            ///alert($(event.target).text());
+        });
+
+        $('#btnUpdate').click(function () {
+
+            var id = $('#msgid').val();
+            var message = $('#msg').val();
+
+            $.ajax({
+                url: '/Home/UpdateMsg',
+                type: 'get',
+                data: {'MessageID':id,'Message':message},
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#msgid').val('');
+                    $('#msg').val('');
+                    $('#myModal').modal('hide');
+                    $('#'+id).text(message);
+
+
+                }
+            })
+
+        })
+
+function readURL() {
+   var fileToLoad = document.getElementById("img_upload").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      $(".chat-container").css('background','url("'+e.target.result+'") no-repeat center');
+      $(".chat-container").css('background-size','cover');
+
+
+    }
+
+    reader.readAsDataURL(fileToLoad);
+
+}
+
+function readURL2() {
+   var fileToLoad = document.getElementById("img_upload2").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      $(".cover").css('background','url("'+e.target.result+'") no-repeat center');
+      $(".cover").css('background-size','cover');
+
+
+    }
+
+    reader.readAsDataURL(fileToLoad);
+
+}
+
+
+function getChatByDate(Dates)
+{
+ //   var date = $('#date').val();
+    var Book = $('#book').val();
+    //CrudScript.makeAjaxRequest('POST', '/Home/LoadChatByDate/', { date: Dates, bookid: Book }, false).then(function (data) {
+    $.ajax({
+        url: '/Home/LoadChatByDate?date=' + Dates + '&bookid='+Book+'',
+        type: 'POST',
+        data:  { date: Dates, bookid: Book },
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $('.bar').attr('disabled', false);
+            $("#sheheryar").html('');
+            var counter = 0;
+            $.each(data, function (key, value) {
+                var text = "";
+                if (value.SenderName == "") {
+                    splitted =value.MessageID+"$ "+ CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message+" \n";
+                }
+                else {
+                    if (counter == 0)
+                    {
+                        first_name = value.SenderName;
+                        counter++;
+                    }
+                    else if (counter == 1)
+                    {
+                        second_name = value.SenderName;
+                        counter++;
+                    }
+
+                    splitted = value.MessageID+"$ " +CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message+" \n";
+                }
+
+
+                $("#sheheryar").append('<p>' + splitted + '</p>');
+            })
+            splitted = $("#sheheryar").html().split("\n");
+            shery();
+        }
+
+    })
+
+}
+
+var splitted;
+var first_name;
+var second_name;
+
+
+
+
+function UploadToDB()
+{
+
+    //debugger
+    var $file = document.getElementById('text_file'),
+    $formData = new FormData();
+
+    if ($file.files.length > 0) {
+        for (var i = 0; i < $file.files.length; i++) {
+            $formData.append('file-' + i, $file.files[i]);
+        }
+    }
+
+    $.ajax({
+        url: '/Home/UploadFile',
+        type: 'POST',
+        data: $formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function (data) {
+
+            $("#sheheryar").html('');
+            var counter = 0;
+            $.each(data, function (key, value) {
+                var text = "";
+                if (value.SenderName == "") {
+                    splitted =value.MessageID+"$ "+ CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.Message+" \n";
+                }
+                else {
+                    if (counter == 0)
+                    {
+                        first_name = value.SenderName;
+                        counter++;
+                    }
+                    else if (counter == 1)
+                    {
+                        second_name = value.SenderName;
+                        counter++;
+                    }
+
+                    splitted = value.MessageID+"$ " +CommonFunctions.parseJsonDates(value.Date) + ", " + value.Time.Hours + ":" + value.Time.Minutes + "- " + value.SenderName + ": " + value.Message+" \n";
+                }
+
+
+                $("#sheheryar").append('<p>' + splitted + '</p>');
+            })
+            splitted = $("#sheheryar").html().split("\n");
+            shery();
+        }
+    });
+}
+
+function getMessage(event) {
+    var message = event.target.textContent;
+    console.log(message);
+}
+function shery(){
+
+
+    //splitted.shift();
+var splitted_length=splitted.length;
+    var new_page=1;
+var page=1;
+var column=1;
+    var flipbook_height = 600;
+    var flag = true;
+    var dedication = '<div class="mypage_"' + page + '"><div class="whatsapp_main" style="background-size: cover;width: 100%;height: 100%;"> <div class="marvel-device nexus5" style="height: 100%;"> <div class="screen" style="text-align: left;height: 100%;"> <div class="screen-container" style="height:100%;"> <div class="chat" style="height: 100%;"> <div class="chat-container" style="height: 100%; background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) !important repeat;background-size: cover;"><div class="conversation" style="height: 100%;position: relative;z-index: 0;"> <div class="conversation-container  myconvoss style="overflow-x: hidden;padding: 0 16px;margin-bottom: 5px;height: 1000px;"></div></div></div></div></div></div></div></div></div>';
+    var child_heights = 0;
+    //var printchild_heights = 0;
+    //page = 2;
+for(i in splitted){
+
+
+    var pages = '<div class=" mypage_"' + page + '"><div class="whatsapp_main"> <div class="marvel-device nexus5"> <div class="screen"> <div class="screen-container" > <div class="chat" > <div class="chat-container row" > <div class="col-md-6"> <div class="conversation" > <div class="conversation-container myconvo' + page + '1" > </div></div></div><div class="col-md-6"> <div class="conversation" > <div class="conversation-container  myconvo' + page + '2"></div></div></div></div></div></div></div></div></div></div>';
+
+    var pagestoprint = '<div class="break-before myprintpage_"' + page + '"><div class="whatsapp_mains" style="background-size:cover; width:100%; height:800px;"> <div class="marvel-device nexus55" style="height:790px;"> <div class="screens" style="text-align:left; height:785px"> <div class="screen-containers" style="height:780px" > <div class="chats" style="height:775px"> <div class="chat-container row" style=" height:770px; background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat; background-size: cover;"> <div class="col-md-6 half1" style="width:50%; float:left"> <div class="conversations" style=" height:100% ;position: relative;z-index: 0; border:dotted"> <div class="conversation-container myconvoprint' + page + '1"> </div></div></div><div class="col-md-6 half2" style="width:50%;float:right"> <div class="conversations" style="height:100%;position: relative;z-index: 0; border:dotted"> <div class="conversation-container  myconvoprint' + page + '2" ></div></div></div></div></div></div></div></div></div></div>';
+    var Time = splitted[i].substring(
+    splitted[i].lastIndexOf(",") + 1,
+    splitted[i].lastIndexOf("-"));
+    var ID = parseInt(splitted[i].substring(
+    splitted[i].lastIndexOf(">") + 1,
+    splitted[i].lastIndexOf("$")
+));
+    //var ID = splitted[i].substring(splitted[i].indexOf('$') - 2,splitted[i].indexOf('$ '))
+    var text = $("#frontdedicationText").text()
+
+    if (new_page == 1 && flag == true && text != '') {
+
+        // pages.prepend($('.dedication'));
+        $(".flipbook").append(dedication);
+
+        $(".toPrint").append(dedication);
+
+        $(".myconvoss").append('<div class="dedicationtext" style="background: #E1FFD3;border-radius: 5px 0px 5px 5px;float: right;color: #000;clear: both;line-height: 18px; font-size: 15px;padding: 8px;position: relative;margin: 8px 0;max-width: 85%;word-wrap: break-word;z-index: -1;" onclick="getMessage(event)"> <span class="frontdedication" style="width:100%;color: black;font-size: 12px;font-weight: bold;margin-bottom: 6px;float: left;">' + text+ '</span><br/><br/></div>');
+        //$(".myconvoss1").append($("#frontdedicationText").val());
+    $(".flipbook").append(pages);
+    $('.toPrint').append(pagestoprint);
+
+        //new_page = new_page+1;
+    new_page = 0;
+    flag = false;
+    }
+
+    else if (new_page == 1 && flag == true && text == '') {
+       $(".flipbook").append(pages);
+       $('.toPrint').append(pagestoprint);
+        //new_page = new_page+1;
+        new_page = 0;
+        flag = false;
+    }
+
+  else  if (new_page == 1 && flag == false) {
+
+        $(".flipbook").append(pages);
+        $('.toPrint').append(pagestoprint);
+        //new_page = new_page+1;
+        new_page = 0;
+        flag = false;
+    }
+var msg = splitted[i].substring(splitted[i].indexOf(': ') + 2).toString();
+if (msg.includes('Messages to this chat and calls are now secured with end-to-end encryption') || msg.includes('<media omitted="">') || msg.includes('/p>')){}
+else if (splitted[i].substring(splitted[i].indexOf('-') + 2, splitted[i].indexOf(': ')) == first_name) {
+
+    $(".myconvo" + page + column).eq(0).append('<div class="message sent"  onclick="getMessage(event)"><span class="name" > ' + first_name + '</span > <span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata" ><span class="time">' + Time + '</span></span> </div > <br /> <br />');
+
+    $(".myconvoprint" + page + column).eq(0).append('<div class="message sents" onclick="getMessage(event)" style="position: relative; background: #e1ffc7;border-radius: 5px 0px 5px 5px;float: right; clear: both;margin: 15px 20px 0 0; padding: 7px;"><div style="position: absolute; right: -13px; top: 0; width: 0px;height: 0px; border-top: 0 solid transparent; border-bottom: 20px solid transparent; border-left: 20px solid #e1ffc7;"></div><span class="names" style="width: 100%; color: purple; font-size: 12px; font-weight: bold; margin-bottom: 6px; float: left; ">' + first_name + '</span><span  id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="pmetadata" ><span class="time" style="color: rgba(0, 0, 0, .45);font-size: 11px;display: inline-block; float:right">' + Time + '</span></span> </div>');
+
+    //$(".myconvoprint" + page + column).eq(0).append('< div class="message sents" onclick= "getMessage(event)" style="position: relative; background: #e1ffc7;border-radius: 5px 0px 5px 5px;float: right; clear: both;margin: 15px 20px 0 0; padding: 7px;" > <div style="position: absolute; right: -13px; top: 0; width: 0px;height: 0px; border-top: 0 solid transparent; border-bottom: 20px solid transparent; border-left: 20px solid #e1ffc7;"></div> <span class="names" style="width: 100%; color: purple; font-size: 12px; font-weight: bold; margin-bottom: 6px; float: left; ">' + first_name + '</span> <span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="pmetadata" ><span class="time" style="color: rgba(0, 0, 0, .45);font-size: 11px;display: inline-block; float:right">' + Time + '</span></span> </div > ');
+
+
+}
+else{
+    $(".myconvo" + page + column).eq(0).append('<div class="message received"  onclick="getMessage(event)"> <span class="name2" >' + second_name + '</span><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata" ><span class="time">' + Time + '</span></span> </div><br/><br/>');
+
+    $(".myconvoprint" + page + column).eq(0).append('<div class="message receiveds" onclick="getMessage(event)" style="position: relative; background: #fff;border-radius: 0px 5px 5px 5px;float: left; clear: both; margin: 15px 0 0 20px; padding: 7px"><div style="position: absolute; left: -13px; top: 0; width: 0px; height: 0px; border-top: 0 solid transparent; border-bottom: 20px solid transparent; border-right: 20px solid white;"></div> <span class="names2" style="width:100%; color:orange; font-size:12px; font-weight: bold; margin-bottom: 6px; float:left">' + second_name + '</span><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="pmetadata" ><span class="time" style="color: rgba(0, 0, 0, .45);font-size: 11px;display: inline-block; float:right">' + Time + '</span></span></div>');
+
+//    $(".myconvoprint" + page + column).eq(0).append('<div class="message receiveds" onclick="getMessage(event)"></div> <span class="names2">' + second_name + '</span><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span><span class="pmetadata" ><span class="time">' + Time + '</span></span> </div><br/><br/>');
+
+}
+
+child_heights=$(".myconvo"+page+column).height();
+   // printchild_heights = $(".myconvoprint" + page + column).height();
+
+// 19 word 1 line main, 9.8 height le rhe hain
+// alert(child_heights);
+
+if(splitted_length-1==i){
+
+}
+else{
+var j= parseInt(i)+parseInt(1);
+var last_length=splitted[j].substring(splitted[j].indexOf(': ')+2);
+
+last_length = (last_length.length/19) + parseInt(10);
+
+}
+if(parseInt(child_heights)+parseInt(last_length) > 420){
+    if(column==1){
+        column=2;
+    }
+    else{
+        page++;
+        new_page=1;
+        column=1;
+    }
+    child_heights=0;
+    }
+    
+
+
+}
+
+loadApp();
+    
+}
+
+ function loadApp() {
+            $('.flipbook').turn({
+                // Width
+
+                width: 922,
+
+                // Height
+
+                height: 550,
+
+                // Elevation
+
+                elevation: 50,
+
+                // Enable gradients
+
+                gradients: true,
+
+                // Auto center this flipbook
+
+                autoCenter: true
+
+            });
+
+        }
+        yepnope({
+            test: Modernizr.csstransforms,
+            yep: ['../../lib/turn.js'],
+            nope: ['../../lib/turn.html4.min.js'],
+            both: ['../../css/style.css'],
+        });
+
+
+
+
+        function ChangeBackground(src) {
+            debugger
+            var title = $('#txtTitle').val();
+            var subtitle = $('#txtsubTitle').val();
+            $('#content').css('background-image', 'url(' + src + ')');
+            $('#booktitle').text(title);
+            $('#booksubtitle').text(subtitle);
+            $('#booktitle').val(title);
+            $('#booksubtitle').val(booksubtitle);
+        $('.transbox').css('display', 'block');
+        $(".cover").css('background', 'url("' + src + '") no-repeat center');
+        $(".cover").css('background-size', 'cover');
+        //document.getElementsByClassName('chat-container').style.backgroundImage = 'url("' + src +')"';
+        $(".chat-container").css('background', 'url("' + src + '") no-repeat center');
+        $(".chat-container").css('background-size', 'cover');
+        }
+
+        function setCover(src) {
+            $(".chat-container").css('background', 'url("' + src + '") no-repeat center');
+            $(".chat-container").css('background-size', 'cover');
+        }
+</script>
+
+}
