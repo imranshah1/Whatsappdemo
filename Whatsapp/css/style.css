@@ -24,14 +24,14 @@ body{
 
 .flipbook-viewport .flipbook{
 	width:922px;
-	height:600px;
+	height:600px !important;
 	left:-380px;
 	top: -260px;
 }
 
 .flipbook-viewport .page{
 	width:461px;
-	height:600px;
+	height:600px !important;
 	background-color:white;
 	background-repeat:no-repeat;
 	background-size:100% 100%;
@@ -501,23 +501,66 @@ body{
     /*left: -25px !important;*/
 }
 
+.b-r-25 {
+    border-radius: 25px !important;
+    color: purple !important;
+    font-weight: 600 !important;
+    background: white;
+    border: 1px solid #ccc !important;
+    padding: 10px 35px !important;
+    width: 160px;
+}
+
+#chat {
+    margin-top: 70px;
+}
+
+    #chat .chat-content {
+        position: relative;
+        padding: 0 5% 5% 5%;
+    }
+
 .upper-center-tabs {
     list-style: none;
-    transform: translate(13%, 0);
+    transform: none !important;
+    display: flex !important;
+}
+
+.upper-center-tabs li {
+    margin: 0 5px;
 }
 
 ul.nav.nav-tabs {
     padding: 20px 0;
 }
 
+.nav.nav-tabs.top-3 {
+    transform: translate(40%, 0);
+    border: 0;
+    padding: 0;
+}
+
 ul.nav.nav-tabs li {
-    padding: 0 10px;
+    padding: 0;
 }
 
 ul.nav.nav-tabs li a {
-    border-radius: 50px;
+    border-radius: 0;
     padding: 10px 35px;
     border: 1px solid #ddd;
+    background: #ffffff;
+    color: purple;
+    font-weight: 600;
+    margin: 0;
+}
+
+ul.nav.nav-tabs li:first-child a
+{
+    border-radius: 50px 0 0 50px;
+}
+
+ul.nav.nav-tabs li:last-child a {
+    border-radius: 0 50px 50px 0;
 }
 
 ul.nav.nav-tabs li.active a {

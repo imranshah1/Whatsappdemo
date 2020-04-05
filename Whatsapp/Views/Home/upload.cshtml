@@ -16,8 +16,8 @@
 
     <style>
             @@media print{
-                .pageBreak {
-                    page-break-before: always;
+                .break-before {
+                    page-break-before: auto;
                 }
                 .chat-container {
                     height: 980px;
@@ -57,27 +57,25 @@ div.transbox p {
 }
        </style>
 </head>
-<body>
-    <div class="container">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-9">
-
-            <ul class="nav nav-tabs">
+<body id="body">
+    <div class="">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs top-3">
                 <li class="active"><a data-toggle="tab" href="#cover" class="ui-icon-bookmark">Cover</a></li>
                 <li><a data-toggle="tab" href="#dedication" class="ui-icon-c">Dedication</a></li>
-                <li><a data-toggle="tab" href="#chat">Chat</a></li>
+                <li><a data-toggle="tab" href="#chat" onclick="chatClicked()">Chat</a></li>
             </ul>
-
         </div>
-        <div class="tab-content" >
+        <hr />
+        <div class="tab-content">
             <div id="cover" class="tab-pane fade in active">
                 <div class="form-horizontal">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="images">
-                                <img class="background" src="~/Images/pink-background.jpg" onclick="setCover(this.src)"/>
-                                <img class="background" src="~/Images/imagess.jpg" onclick="ChangeBackground(this.src)"/>
+                                <img class="background" src="~/Images/pink-background.jpg" onclick="setCover(this.src)" />
+                                <img class="background" src="~/Images/imagess.jpg" onclick="ChangeBackground(this.src)" />
                                 <img class="background" src="~/Images/blue-and-purple.jpg" onclick="ChangeBackground(this.src)" />
                                 <img class="background" src="~/Images/images(1).jpg" onclick="ChangeBackground(this.src)" />
                                 <img class="background" src="~/Images/images.jpg" onclick="ChangeBackground(this.src)" />
@@ -87,7 +85,7 @@ div.transbox p {
                 </div>
 
                 <div id="content" class="col-lg-12">
-                    
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-1"></div>
@@ -100,7 +98,7 @@ div.transbox p {
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-5 transbox">
-                                <input type="text"  class="form-control col-lg-2" id="txtsubTitle" placeholder="Write a subtitle" />
+                                <input type="text" class="form-control col-lg-2" id="txtsubTitle" placeholder="Write a subtitle" />
                             </div>
                         </div>
 
@@ -133,10 +131,10 @@ div.transbox p {
                         </div>
                         <div id="backPage" class="tab-pane fade">
                             <br />
-                            
+
                             <div class="row">
                                 <div class="col-lg-6">
-                                   @Html.TextArea("backPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
+                                    @Html.TextArea("backPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
                                 </div>
                                 <div class="col-lg-6">
                                     <div class=".dedication" style="display:block">
@@ -145,142 +143,144 @@ div.transbox p {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
 
 
             <div id="chat" class="tab-pane fade" style="background-image: url('../../Images/whatsapp.jpg');">
-                <br />
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="row">
+                <div class="chat-content">
+                    <br />
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
 
-                            <ul class="upper-center-tabs">
-                                <li>
-                                    <input type="text" id="hiddenField" class="datepicker" hidden />
-                                </li>
-                                <li><select id="BookId" class="col-lg-1 btn btn-default" onchange="getChatfromDropDown(this.value)">
-    <option> Book</option>
-    @foreach (var v in ViewBag.BookId)
-    {
-        <option value="@v.Value">@v.Text</option>
-    }
-</select>
-                                </li>
-                                <li>
+                                <ul class="upper-center-tabs">
+                                    <li>
+                                        <input type="text" id="hiddenField" class="datepicker" hidden />
+                                    </li>
+                                    <li>
+                                        <select id="BookId" class="btn btn-default b-r-25" onchange="getChatfromDropDown(this.value)">
+                                            <option> Book</option>
+                                            @foreach (var v in ViewBag.BookId)
+                                            {
+                                                <option value="@v.Value">@v.Text</option>
+                                            }
+                                        </select>
+                                    </li>
+                                    <li>
 
-                                    <input type="button" name="Background" id="btnPrint" value="Print" class="bar btn btn-default col-lg-2" onclick="printData('#toprint')" />
+                                        <input type="button" name="Background" id="btnPrint" value="Print" class="bar btn btn-default b-r-25" onclick="printData('#toprint')" />
 
-                                </li>
-                                <li>
-                                    <input type="button" name="Background" id="btnPrint" value="Printme" class="bar btn btn-default col-lg-2" onclick="PrintMe('toprint')" />
-                                    
-                                </li>
-                                <li>
-                                    <input type="button" value="Participants" class="bar btn btn-default col-lg-2" />
-                                </li>
-                                <li>
-                                    <select id="fontsense" class="bar btn btn-default col-lg-1">
-                                        <option>Font</option>
-                                        <!--default fonts-->
-                                        <option value="Arial">Arial</option>
-                                        <option value="Comic Sans MS">Comic Sans MS</option>
-                                        <option value="Trebuchet MS">Trebuchet MS</option>
-                                        <option value="Verdana">Verdana</option>
-                                    </select>
+                                    </li>
+                                    <li>
+                                        <input type="button" name="Background" id="btnPrint" value="Printme" class="bar btn btn-default b-r-25" onclick="PrintMe('toprint')" />
 
-                                </li>
-                                <li>
-                                    <input type="button" value="Edit mode" class="bar btn btn-default col-lg-2" />
-                                </li>
-                                <li>
-                                    <input type="button" value="Add media" class="bar btn btn-default col-lg-2" />
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li>
+                                        <input type="button" value="Participants" class="bar btn btn-default b-r-25" />
+                                    </li>
+                                    <li>
+                                        <select id="fontsense" class="bar btn btn-default b-r-25">
+                                            <option>Font</option>
+                                            <!--default fonts-->
+                                            <option value="Arial">Arial</option>
+                                            <option value="Comic Sans MS">Comic Sans MS</option>
+                                            <option value="Trebuchet MS">Trebuchet MS</option>
+                                            <option value="Verdana">Verdana</option>
+                                        </select>
 
-                            <input type="file" name="img_upload" id="img_upload" accept=".png,.jpg,.jpeg" style="display:none"> 
-                            
+                                    </li>
+                                    <li>
+                                        <input type="button" value="Edit mode" class="bar btn btn-default b-r-25" />
+                                    </li>
+                                    <li>
+                                        <input type="button" value="Add media" class="bar btn btn-default b-r-25" />
+                                    </li>
+                                </ul>
+
+                                @*<input type="file" name="img_upload" id="img_upload" accept=".png,.jpg,.jpeg" style="display:none">*@
+
                                 @*@Html.DropDownList("BookId", ViewBag.BookId as SelectList, "Please Select Book", new { @class = "form-control" })*@
-                            
+
                                 @*<input type="button" value="Font" class="btn btn-default col-lg-2" />*@
 
 
-</div>
-                    </div>
-                </div>
-               
-                <div class="modal modal-lg col-lg-12" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Edit Message</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
+                        </div>
+                    </div>
 
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input type="hidden" id="msgid" />
-                                            <label class="control-label col-lg-6">Message</label>
-                                            <input type="text" id="msg" class="form-control col-lg-6" />
+                    <div class="modal modal-lg col-lg-12" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Edit Message</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="hidden" id="msgid" />
+                                                <label class="control-label col-lg-6">Message</label>
+                                                <input type="text" id="msg" class="form-control col-lg-6" />
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <input type="button" id="btnUpdate" class="btn btn-primary btn-fill " value="Update" />
-                            </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <input type="button" id="btnUpdate" class="btn btn-primary btn-fill " value="Update" />
+                                </div>
 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <br />
-                                <p>Upload Text File</p>
-                                <input type="file" name="" id="text_file" accept=".txt">
-                                <br />
-                                <button type="button"  onclick="UploadToDB()" class="btn btn-default">Load File</button>
                             </div>
                         </div>
                     </div>
-                            <div class="form-group">
+
+                    <div class="form-horizontal">
+                        @*<div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <br />
+                                    <p>Upload Text File</p>
+                                    <input type="file" name="" id="text_file" accept=".txt">
+                                    <br />
+                                    <button type="button" onclick="UploadToDB()" class="btn btn-default">Load File</button>
+                                </div>
+                            </div>
+                        </div>*@
+                        @*<div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3">
                                     <br />
                                     Upload BG Image&nbsp;
-                                    <input type="file" name="img_upload" id="img_upload"  accept=".png,.jpg,.jpeg">
+                                    <input type="file" name="img_upload" id="img_upload" accept=".png,.jpg,.jpeg">
                                     <br />
                                     <button onclick="readURL()" class="button btn btn-default">Load File</button>
 
                                 </div>
-                                </div>
-                    </div>
-                    <div id="sheheryar" style="display:none;">
-                    </div>
-                    <div class="toPrint" id="toprint" style="overflow-y:scroll; display:block"></div>
-                    <div class="flipbook-viewport mt-5" style="float: left;">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="container">
-                                    <div class="flipbook" id="flip">
-                                        <div class="cover">
-                                            <h4 id="booktitle" style="font-size: 18px;text-align: center;vertical-align: middle;line-height: 90px;margin-top: 60px"></h4>
-                                            <p id="booksubtitle" style="margin: 0 0 10px;font-size: 18px;text-align: center;vertical-align: middle; line-height: 0px;margin-top: 30px"></p>
-                                        </div>
+                            </div>
+                        </div>*@
+                        <div id="sheheryar" style="display:none;">
+                        </div>
+                        <div class="toPrint" id="toprint" style="overflow-y:scroll; display:none"></div>
+                        <div class="flipbook-viewport mt-5" style="float: left;">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="container">
+                                        <div class="flipbook" id="flip">
+                                            <div class="cover">
+                                                <h4 id="booktitle" style="font-size: 18px;text-align: center;vertical-align: middle;line-height: 90px;margin-top: 60px"></h4>
+                                                <p id="booksubtitle" style="margin: 0 0 10px;font-size: 18px;text-align: center;vertical-align: middle; line-height: 0px;margin-top: 30px"></p>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -289,8 +289,8 @@ div.transbox p {
                         </div>
                     </div>
                 </div>
-               
             </div>
+        </div>
 
         </div>
     
@@ -304,7 +304,6 @@ div.transbox p {
 <script src="~/Scripts/CrudScript.js"></script>
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script type="text/javascript">
-
 
     function printData(elem) {
         Popup(jQuery(elem).html());
@@ -697,9 +696,9 @@ var column=1;
 for(i in splitted){
 
 
-    var pages = '<div class=" mypage_"' + page + '"><div class="whatsapp_main"> <div class="marvel-device nexus5"> <div class="screen"> <div class="screen-container" > <div class="chat" > <div class="chat-container row" > <div class="col-md-6"> <div class="conversation" > <div class="conversation-container myconvo' + page + '1" > </div></div></div><div class="col-md-6"> <div class="conversation" > <div class="conversation-container  myconvo' + page + '2"></div></div></div></div></div></div></div></div></div></div>';
+    var pages = '<div class=" mypage_"' + page + '"><div class="whatsapp_main"> <div class="marvel-device nexus5"> <div class="screen"> <div class="screen-container" > <div class="chat" > <div class="chat-container" > <div class="col-md-6"> <div class="conversation" > <div class="conversation-container myconvo' + page + '1" > </div></div></div><div class="col-md-6"> <div class="conversation" > <div class="conversation-container  myconvo' + page + '2"></div></div></div></div></div></div></div></div></div></div>';
 
-    var pagestoprint = '<div class="break-before myprintpage_"' + page + '"><div class="whatsapp_mains" style="background-size:cover; width:100%; height:800px;"> <div class="marvel-device nexus55" style="height:790px;"> <div class="screens" style="text-align:left; height:785px"> <div class="screen-containers" style="height:780px" > <div class="chats" style="height:775px"> <div class="chat-container row" style=" height:770px; background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat; background-size: cover;"> <div class="col-md-6 half1" style="width:50%; float:left"> <div class="conversations" style=" height:100% ;position: relative;z-index: 0; border:dotted"> <div class="conversation-container myconvoprint' + page + '1"> </div></div></div><div class="col-md-6 half2" style="width:50%;float:right"> <div class="conversations" style="height:100%;position: relative;z-index: 0; border:dotted"> <div class="conversation-container  myconvoprint' + page + '2" ></div></div></div></div></div></div></div></div></div></div>';
+    var pagestoprint = '<div class="break-before myprintpage_"' + page + '" style="padding: 0 0 1.55% 0; "><div class="whatsapp_mains" style="background-size:cover; width:100%; height:100%;"> <div class="marvel-device nexus55" style="height:100%;"> <div class="screens" style="text-align:left; height:100%"> <div class="screen-containers" style="height:100%" > <div class="chats" style="height:100%"> <div class="chat-container row" style=" height:100%; background: #efe7dd url(https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg) repeat; background-size: cover;"> <div class="col-md-6 half1" style="width:50%; float:left"> <div class="conversations" style=" height:100% ;position: relative;z-index: 0; border:dotted"> <div class="conversation-container myconvoprint' + page + '1"> </div></div></div><div class="col-md-6 half2" style="width:50%;float:right"> <div class="conversations" style="height:100%;position: relative;z-index: 0; border:dotted"> <div class="conversation-container  myconvoprint' + page + '2" ></div></div></div></div></div></div></div></div></div></div>';
     var Time = splitted[i].substring(
     splitted[i].lastIndexOf(",") + 1,
     splitted[i].lastIndexOf("-"));
@@ -808,7 +807,7 @@ loadApp();
 
                 // Height
 
-                height: 550,
+                height: 600,
 
                 // Elevation
 
