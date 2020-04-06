@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     @*<link href="~/css/print.css" rel="stylesheet" />*@
 
@@ -37,14 +38,18 @@
        .background:hover {
     cursor: pointer;
 }
-       #content {
-  display: table;
-  margin-right: auto;
-  margin-left: auto;
-  width:50%;
-  height:50%
+
+#content {
+    height: 180px;
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-    div.transbox {
+
+#content input{
+    margin: 20px 0;
+}
+div.transbox {
   margin: 30px;
   opacity: 0.6;
   filter: alpha(opacity=60); /* For IE8 and earlier */
@@ -61,9 +66,9 @@ div.transbox p {
     <div class="">
         <div class="col-lg-12">
             <ul class="nav nav-tabs top-3">
-                <li class="active"><a data-toggle="tab" href="#cover" class="ui-icon-bookmark">Cover</a></li>
-                <li><a data-toggle="tab" href="#dedication" class="ui-icon-c">Dedication</a></li>
-                <li><a data-toggle="tab" href="#chat" onclick="chatClicked()">Chat</a></li>
+                <li class="active"><a data-toggle="tab" href="#cover" class="ui-icon-bookmark"><i class="fas fa-book"></i> Cover</a></li>
+                <li><a data-toggle="tab" href="#dedication" class="ui-icon-c"><i class="far fa-edit"></i> Dedication</a></li>
+                <li><a data-toggle="tab" href="#chat" onclick="chatClicked()"><i class="fas fa-comments"></i> Chat</a></li>
             </ul>
         </div>
         <hr />
@@ -84,25 +89,15 @@ div.transbox p {
                     </div>
                 </div>
 
-                <div id="content" class="col-lg-12">
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-5 transbox">
-                                <input type="text" class="form-control col-lg-2" id="txtTitle" placeholder="Write a title" />
-                            </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div id="content">
+                            <input type="text" class="form-control col-lg-2" id="txtTitle" placeholder="Write a title" />
+                            <input type="text" class="form-control col-lg-2" id="txtsubTitle" placeholder="Write a subtitle" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-5 transbox">
-                                <input type="text" class="form-control col-lg-2" id="txtsubTitle" placeholder="Write a subtitle" />
-                            </div>
-                        </div>
-
-                    </div>
+                    <div class="col-md-4"></div>
                 </div>
 
             </div>
@@ -115,23 +110,23 @@ div.transbox p {
                     </ul>
 
                     <div class="tab-content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div id="frontPage" class="tab-pane fade in active">
-                                    <br />
-                                    @Html.TextArea("frontPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
 
+                        <div id="frontPage" class="tab-pane fade in active">
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    @Html.TextArea("frontPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class=".dedication" style="display:block">
-                                    <p id="frontdedicationText"></p>
+                                <div class="col-lg-6">
+                                    <div class=".dedication" style="display:none">
+                                        <p id="frontdedicationText"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <div id="backPage" class="tab-pane fade">
                             <br />
-
                             <div class="row">
                                 <div class="col-lg-6">
                                     @Html.TextArea("backPage", null, new { cols = "80", rows = "20", placeholder = "Write a dedication" })
@@ -161,6 +156,7 @@ div.transbox p {
                                         <input type="text" id="hiddenField" class="datepicker" hidden />
                                     </li>
                                     <li>
+                                        <i class="fas fa-book"></i>
                                         <select id="BookId" class="btn btn-default b-r-25" onchange="getChatfromDropDown(this.value)">
                                             <option> Book</option>
                                             @foreach (var v in ViewBag.BookId)
@@ -175,13 +171,16 @@ div.transbox p {
 
                                     </li>
                                     <li>
-                                        <input type="button" name="Background" id="btnPrint" value="Printme" class="bar btn btn-default b-r-25" onclick="PrintMe('toprint')" />
+                                        <i class="far fa-calendar-alt"></i>
+                                        <input type="button" name="Background" id="interval" value="interval" class="bar btn btn-default b-r-25" onclick="PrintMe('toprint')" />
 
                                     </li>
                                     <li>
+                                        <i class="fas fa-users"></i>
                                         <input type="button" value="Participants" class="bar btn btn-default b-r-25" />
                                     </li>
                                     <li>
+                                        <i class="fas fa-font"></i>
                                         <select id="fontsense" class="bar btn btn-default b-r-25">
                                             <option>Font</option>
                                             <!--default fonts-->
@@ -193,9 +192,11 @@ div.transbox p {
 
                                     </li>
                                     <li>
+                                        <i class="fas fa-pencil-alt"></i>
                                         <input type="button" value="Edit mode" class="bar btn btn-default b-r-25" />
                                     </li>
                                     <li>
+                                        <i class="fas fa-plus"></i>
                                         <input type="button" value="Add media" class="bar btn btn-default b-r-25" />
                                     </li>
                                 </ul>
@@ -351,13 +352,13 @@ div.transbox p {
     })
 
     $("#frontPage").keyup(function () {
-        debugger
+        
         var text = $('textarea#frontPage').val();
         $("#frontdedicationText").text(text);
     });
 
     $("#backPage").keyup(function () {
-        debugger
+        
         var text = $('textarea#backPage').val();
         $("#backdedicationText").text(text);
     });
@@ -716,7 +717,7 @@ for(i in splitted){
 
         $(".toPrint").append(dedication);
 
-        $(".myconvoss").append('<div class="dedicationtext" style="background: #E1FFD3;border-radius: 5px 0px 5px 5px;float: right;color: #000;clear: both;line-height: 18px; font-size: 15px;padding: 8px;position: relative;margin: 8px 0;max-width: 85%;word-wrap: break-word;z-index: -1;" onclick="getMessage(event)"> <span class="frontdedication" style="width:100%;color: black;font-size: 12px;font-weight: bold;margin-bottom: 6px;float: left;">' + text+ '</span><br/><br/></div>');
+        $(".myconvoss").append('<div class="dedicationtext"  onclick="getMessage(event)"> <span class="frontdedication" style="width:100%;color:#3a3a3a;font-size: 15px;font-weight: bold;text-transform: capitalize;margin-bottom: 6px;float: left;">' + text+ '</span><br/><br/></div>');
         //$(".myconvoss1").append($("#frontdedicationText").val());
     $(".flipbook").append(pages);
     $('.toPrint').append(pagestoprint);
@@ -835,7 +836,7 @@ loadApp();
 
 
         function ChangeBackground(src) {
-            debugger
+           
             var title = $('#txtTitle').val();
             var subtitle = $('#txtsubTitle').val();
             $('#content').css('background-image', 'url(' + src + ')');
