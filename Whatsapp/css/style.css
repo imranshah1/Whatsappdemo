@@ -22,12 +22,19 @@ body{
 	margin:auto;
 }
 
-.flipbook-viewport .flipbook {
-    width: 922px;
-    height: 600px !important;
-    left: -465px;
-    top: -450px !important;
-}
+    .flipbook-viewport .flipbook {
+        width: 922px;
+        height: 620px !important;
+        left: -465px;
+        top: -450px !important;
+    }
+
+    .flipbook-viewport .pflipbook {
+        width: 922px;
+        height: 700px !important;
+        left: -465px;
+        top: -450px !important;
+    }
 
 .flipbook-viewport .page{
 	width:461px;
@@ -239,11 +246,11 @@ body{
   color: #000;
   clear: both;
   line-height: 18px;
-  font-size: 15px;
+  font-size: 13px;
   padding: 8px;
   position: relative;
   margin: 8px 0;
-  max-width: 85%;
+  max-width: 100%;
   word-wrap: break-word;
   z-index: -1;
 }
