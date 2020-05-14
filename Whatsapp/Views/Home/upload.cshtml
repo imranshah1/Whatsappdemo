@@ -104,6 +104,13 @@ a:hover span {
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <input type="file" class="file-path col-lg-8" name="" id="img_file" accept=".jpg,png">
+
+                                <button type="button" class="btn btn-default col-lg-4" onclick="UploadImages()">Load File</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -350,6 +357,7 @@ a:hover span {
     }
 
     function LoadImages() {
+        $('.images').empty();
      $.ajax({
             url: '/Home/LoadImages',
             type: 'post',
@@ -364,7 +372,41 @@ a:hover span {
         })
 
     }
+
+    function UploadImages() {
+
+        var $file = document.getElementById('img_file'),
+    $formData = new FormData();
+
+    if ($file.files.length > 0) {
+        for (var i = 0; i < $file.files.length; i++) {
+            $formData.append('file-' + i, $file.files[i]);
+        }
+    }
+        $.ajax({
+            url: '/Home/UploadImage',
+            type: 'POST',
+            data: $formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert('Uploaded Successfully');
+                LoadImages();
+            },
+            error: function (e) {
+                alert(e.statusText);
+            }
+        })
+    }
+
     $(document).ready(function () {
+
+        $("#flipbook").bind("mouseEvents", function (event, page, pageObject) {
+            debugger;
+
+	// Implementation
+});
         $('#content').css('display', 'none');
         LoadImages();
 $('.transbox').css('display', 'none');
@@ -822,20 +864,12 @@ var msg = splitted[i].substring(splitted[i].indexOf(': ') + 2).toString();
 if (msg.includes('Messages to this chat and calls are now secured with end-to-end encryption') || msg.includes('<media omitted="">') || msg.includes('/p>')){}
 else if (splitted[i].substring(splitted[i].indexOf('-') + 2, splitted[i].indexOf(': ')) == first_name) {
 
-    $(".myconvo" + page + column).eq(0).append('<div class="message sent"  onclick="getMessage(event)"><span class="name" > ' + first_name + '</span > <span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata" ><span class="time">' + Time + '</span></span> </div > <br /> <br />');
-
-//    $(".myconvoprint" + page + column).eq(0).append('<div class="message sents" onclick="getMessage(event)" style="position: relative; background: #e1ffc7;border-radius: 5px 0px 5px 5px;float: right; clear: both;margin: 15px 20px 0 0; padding: 7px;"><div style="position: absolute; right: -13px; top: 0; width: 0px;height: 0px; border-top: 0 solid transparent; border-bottom: 20px solid transparent; border-left: 20px solid #e1ffc7;"></div><span class="names" style="width: 100%; color: purple; font-size: 12px; font-weight: bold; margin-bottom: 6px; float: left; ">' + first_name + '</span><span  id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="pmetadata" ><span class="time" style="color: rgba(0, 0, 0, .45);font-size: 11px;display: inline-block; float:right">' + Time + '</span></span> </div>');
-
-    //$(".myconvoprint" + page + column).eq(0).append('< div class="message sents" onclick= "getMessage(event)" style="position: relative; background: #e1ffc7;border-radius: 5px 0px 5px 5px;float: right; clear: both;margin: 15px 20px 0 0; padding: 7px;" > <div style="position: absolute; right: -13px; top: 0; width: 0px;height: 0px; border-top: 0 solid transparent; border-bottom: 20px solid transparent; border-left: 20px solid #e1ffc7;"></div> <span class="names" style="width: 100%; color: purple; font-size: 12px; font-weight: bold; margin-bottom: 6px; float: left; ">' + first_name + '</span> <span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="pmetadata" ><span class="time" style="color: rgba(0, 0, 0, .45);font-size: 11px;display: inline-block; float:right">' + Time + '</span></span> </div > ');
-
+    $(".myconvo" + page + column).eq(0).append('<div class="message sent"  onclick="getMessage(event)"><span class="name" > ' + first_name + '</span > <span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata" ><span class="time">' + Time + '</span></span>  </div > <br /> <br />');
 
 }
 else{
     $(".myconvo" + page + column).eq(0).append('<div class="message received"  onclick="getMessage(event)"> <span class="name2" >' + second_name + '</span><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="metadata" ><span class="time">' + Time + '</span></span> </div><br/><br/>');
 
-  //  $(".myconvoprint" + page + column).eq(0).append('<div class="message receiveds" onclick="getMessage(event)" style="position: relative; background: #fff;border-radius: 0px 5px 5px 5px;float: left; clear: both; margin: 15px 0 0 20px; padding: 7px"><div style="position: absolute; left: -13px; top: 0; width: 0px; height: 0px; border-top: 0 solid transparent; border-bottom: 20px solid transparent; border-right: 20px solid white;"></div> <span class="names2" style="width:100%; color:orange; font-size:12px; font-weight: bold; margin-bottom: 6px; float:left">' + second_name + '</span><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span> <span class="pmetadata" ><span class="time" style="color: rgba(0, 0, 0, .45);font-size: 11px;display: inline-block; float:right">' + Time + '</span></span></div>');
-
-//    $(".myconvoprint" + page + column).eq(0).append('<div class="message receiveds" onclick="getMessage(event)"></div> <span class="names2">' + second_name + '</span><span id="' + ID + '">' + splitted[i].substring(splitted[i].indexOf(': ') + 2) + '</span><span class="pmetadata" ><span class="time">' + Time + '</span></span> </div><br/><br/>');
 
 }
 
@@ -923,10 +957,11 @@ function loadApp() {
 
                 // Auto center this flipbook
 
-                autoCenter: true
+                autoCenter: true,
+
 
             });
-
+    
         }
 yepnope({
             test: Modernizr.csstransforms,

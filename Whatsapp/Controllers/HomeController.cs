@@ -48,8 +48,8 @@ namespace Whatsapp.Controllers
             file.SaveAs(path);
             tbl_Images image = new tbl_Images();
             image.Title = fileName;
-            image.Type = file.ContentType;
-            image.Url = path;
+            image.Type = "background";
+            image.Url = "/Images/"+fileName;
             image.CreatedDate = DateTime.Now;
             db.tbl_Images.Add(image);
             db.SaveChanges();
@@ -208,7 +208,9 @@ namespace Whatsapp.Controllers
 
         [HttpPost]
         public ActionResult LoadChatByBook(string idd)
-        {   int id = Convert.ToInt32(idd);
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            int id = Convert.ToInt32(idd);
             var Book = db.tbl_book.Where(x => x.BookID == id).ToList();
             return Json(Book);
             
