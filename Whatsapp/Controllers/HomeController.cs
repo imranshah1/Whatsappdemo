@@ -32,13 +32,45 @@ namespace Whatsapp.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        [HttpPost]
+        public ActionResult LoadImages()
+        {
+            var images = db.tbl_Images.ToList();
+            return Json(images);
+        }
+
+        [HttpPost]
+        public ActionResult UploadImage()
+        {
+            var file = Request.Files[0];
+            var fileName = Path.GetFileName(file.FileName);
+            var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+            file.SaveAs(path);
+            tbl_Images image = new tbl_Images();
+            image.Title = fileName;
+            image.Type = file.ContentType;
+            image.Url = path;
+            image.CreatedDate = DateTime.Now;
+            db.tbl_Images.Add(image);
+            db.SaveChanges();
+
+
+            
+            return Json("Image Uploaded Succesfully");
+        }
 
         [HttpPost]
         public ActionResult UploadFile()
         {
-            if (Request.Cookies["cook"] != null)
+            if (Request.Files.Count == 0)
+            {
+                return Json("No File Uploaded");
+            }
+
+           else if (Request.Cookies["cook"] != null)
             {
                 val = cls.getCookieValue();
+                
                 var file = Request.Files[0];
                 var fileName = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
@@ -117,6 +149,7 @@ namespace Whatsapp.Controllers
                 db.tbl_book.AddRange(tblbook);
                 db.SaveChanges();
                 return Json(tblbook);
+
             }
             else
             {
@@ -125,43 +158,6 @@ namespace Whatsapp.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult printdiv(string html)
-        {
-            byte[] pdf; // result will be here
-            string filePath = Path.Combine(HttpRuntime.AppDomainAppPath, "css/style.css");
-           // string[] files = File.ReadAllLines(path);
-            var cssText = System.IO.File.ReadAllText(filePath);
-            //var html = System.IO.File.ReadAllText("~/css/test.html"));
-            html = html.Replace(@"<br>", @"<br/>");
-            try
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    var document = new Document(PageSize.A4, 50, 50, 60, 60);
-                    var writer = PdfWriter.GetInstance(document, memoryStream);
-                    document.Open();
-
-                    using (var cssMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(cssText)))
-                    {
-                        using (var htmlMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(html)))
-                        {
-                            XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlMemoryStream, cssMemoryStream);
-                        }
-                    }
-
-                    document.Close();
-
-                    pdf = memoryStream.ToArray();
-                    return Json("");
-                }
-            }
-            catch (Exception e)
-            {
-                return Json("");
-            }
-        }
         public ActionResult upload()
         {
             if (Request.Cookies["cook"] != null)

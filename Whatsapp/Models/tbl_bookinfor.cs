@@ -14,6 +14,12 @@ namespace Whatsapp.Models
     
     public partial class tbl_bookinfor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_bookinfor()
+        {
+            this.tbl_book = new HashSet<tbl_book>();
+        }
+    
         public int BookInfoID { get; set; }
         public Nullable<int> BookID { get; set; }
         public Nullable<int> UserID { get; set; }
@@ -21,5 +27,9 @@ namespace Whatsapp.Models
         public string BackTitle { get; set; }
         public byte[] Image { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_book> tbl_book { get; set; }
+        public virtual tbl_Users tbl_Users { get; set; }
     }
 }

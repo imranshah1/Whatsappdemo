@@ -29,6 +29,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Images">
+      <EntityTypeMapping TypeName="WhatsappDBModel.tbl_Images">
+        <MappingFragment StoreEntitySet="tbl_Images">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_Users">
       <EntityTypeMapping TypeName="WhatsappDBModel.tbl_Users">
         <MappingFragment StoreEntitySet="tbl_Users">

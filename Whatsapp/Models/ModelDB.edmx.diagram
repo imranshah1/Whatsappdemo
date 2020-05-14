@@ -5,9 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9da4fe28343e48a795abb6472ac13ba7" Name="Diagram1">
-        <EntityTypeShape EntityType="WhatsappDBModel.tbl_book" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="WhatsappDBModel.tbl_bookinfor" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="WhatsappDBModel.tbl_Users" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WhatsappDBModel.tbl_book" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="WhatsappDBModel.tbl_bookinfor" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="WhatsappDBModel.tbl_Images" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WhatsappDBModel.tbl_Users" Width="1.5" PointX="0.75" PointY="3.375" />
+        <AssociationConnector Association="WhatsappDBModel.FK_tbl_book_tbl_bookinfor" />
+        <AssociationConnector Association="WhatsappDBModel.FK_tbl_book_tbl_Users" />
+        <AssociationConnector Association="WhatsappDBModel.FK_tbl_bookinfor_tbl_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

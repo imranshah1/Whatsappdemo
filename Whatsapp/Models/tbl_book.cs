@@ -23,5 +23,8 @@ namespace Whatsapp.Models
         public string SenderName { get; set; }
         public string Message { get; set; }
         public Nullable<int> ImageId { get; set; }
+    
+        public virtual tbl_bookinfor tbl_bookinfor { get; set; }
+        public virtual tbl_Users tbl_Users { get; set; }
     }
 }

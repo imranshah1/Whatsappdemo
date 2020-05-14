@@ -27,6 +27,7 @@ namespace Whatsapp.Models
     
         public virtual DbSet<tbl_book> tbl_book { get; set; }
         public virtual DbSet<tbl_bookinfor> tbl_bookinfor { get; set; }
+        public virtual DbSet<tbl_Images> tbl_Images { get; set; }
         public virtual DbSet<tbl_Users> tbl_Users { get; set; }
     }
 }

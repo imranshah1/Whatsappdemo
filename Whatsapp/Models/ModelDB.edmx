@@ -31,6 +31,17 @@
           <Property Name="Image" Type="image" />
           <Property Name="CreationDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbl_Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="Url" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="tbl_Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -40,10 +51,59 @@
           <Property Name="Username" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_tbl_book_tbl_bookinfor">
+          <End Role="tbl_bookinfor" Type="Self.tbl_bookinfor" Multiplicity="0..1" />
+          <End Role="tbl_book" Type="Self.tbl_book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bookinfor">
+              <PropertyRef Name="BookInfoID" />
+            </Principal>
+            <Dependent Role="tbl_book">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_book_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_book" Type="Self.tbl_book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_book">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_bookinfor_tbl_Users">
+          <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+          <End Role="tbl_bookinfor" Type="Self.tbl_bookinfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_bookinfor">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WhatsappDBModelStoreContainer">
           <EntitySet Name="tbl_book" EntityType="Self.tbl_book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_bookinfor" EntityType="Self.tbl_bookinfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Images" EntityType="Self.tbl_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Users" EntityType="Self.tbl_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_book_tbl_bookinfor" Association="Self.FK_tbl_book_tbl_bookinfor">
+            <End Role="tbl_bookinfor" EntitySet="tbl_bookinfor" />
+            <End Role="tbl_book" EntitySet="tbl_book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_book_tbl_Users" Association="Self.FK_tbl_book_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_book" EntitySet="tbl_book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_bookinfor_tbl_Users" Association="Self.FK_tbl_bookinfor_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_bookinfor" EntitySet="tbl_bookinfor" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -52,7 +112,20 @@
         <EntityContainer Name="WhatsappDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_book" EntityType="WhatsappDBModel.tbl_book" />
           <EntitySet Name="tbl_bookinfor" EntityType="WhatsappDBModel.tbl_bookinfor" />
+          <EntitySet Name="tbl_Images" EntityType="WhatsappDBModel.tbl_Images" />
           <EntitySet Name="tbl_Users" EntityType="WhatsappDBModel.tbl_Users" />
+          <AssociationSet Name="FK_tbl_book_tbl_bookinfor" Association="WhatsappDBModel.FK_tbl_book_tbl_bookinfor">
+            <End Role="tbl_bookinfor" EntitySet="tbl_bookinfor" />
+            <End Role="tbl_book" EntitySet="tbl_book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_book_tbl_Users" Association="WhatsappDBModel.FK_tbl_book_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_book" EntitySet="tbl_book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_bookinfor_tbl_Users" Association="WhatsappDBModel.FK_tbl_bookinfor_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="tbl_bookinfor" EntitySet="tbl_bookinfor" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tbl_book">
           <Key>
@@ -67,6 +140,8 @@
           <Property Name="SenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ImageId" Type="Int32" />
+          <NavigationProperty Name="tbl_bookinfor" Relationship="WhatsappDBModel.FK_tbl_book_tbl_bookinfor" FromRole="tbl_book" ToRole="tbl_bookinfor" />
+          <NavigationProperty Name="tbl_Users" Relationship="WhatsappDBModel.FK_tbl_book_tbl_Users" FromRole="tbl_book" ToRole="tbl_Users" />
         </EntityType>
         <EntityType Name="tbl_bookinfor">
           <Key>
@@ -79,6 +154,19 @@
           <Property Name="BackTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_book" Relationship="WhatsappDBModel.FK_tbl_book_tbl_bookinfor" FromRole="tbl_bookinfor" ToRole="tbl_book" />
+          <NavigationProperty Name="tbl_Users" Relationship="WhatsappDBModel.FK_tbl_bookinfor_tbl_Users" FromRole="tbl_bookinfor" ToRole="tbl_Users" />
+        </EntityType>
+        <EntityType Name="tbl_Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tbl_Users">
           <Key>
@@ -88,8 +176,46 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_book" Relationship="WhatsappDBModel.FK_tbl_book_tbl_Users" FromRole="tbl_Users" ToRole="tbl_book" />
+          <NavigationProperty Name="tbl_bookinfor" Relationship="WhatsappDBModel.FK_tbl_bookinfor_tbl_Users" FromRole="tbl_Users" ToRole="tbl_bookinfor" />
         </EntityType>
-      </Schema>
+        <Association Name="FK_tbl_book_tbl_bookinfor">
+          <End Type="WhatsappDBModel.tbl_bookinfor" Role="tbl_bookinfor" Multiplicity="0..1" />
+          <End Type="WhatsappDBModel.tbl_book" Role="tbl_book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_bookinfor">
+              <PropertyRef Name="BookInfoID" />
+            </Principal>
+            <Dependent Role="tbl_book">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_book_tbl_Users">
+          <End Type="WhatsappDBModel.tbl_Users" Role="tbl_Users" Multiplicity="0..1" />
+          <End Type="WhatsappDBModel.tbl_book" Role="tbl_book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_book">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_bookinfor_tbl_Users">
+          <End Type="WhatsappDBModel.tbl_Users" Role="tbl_Users" Multiplicity="0..1" />
+          <End Type="WhatsappDBModel.tbl_bookinfor" Role="tbl_bookinfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_bookinfor">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -120,6 +246,18 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="BookInfoID" ColumnName="BookInfoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Images">
+            <EntityTypeMapping TypeName="WhatsappDBModel.tbl_Images">
+              <MappingFragment StoreEntitySet="tbl_Images">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
